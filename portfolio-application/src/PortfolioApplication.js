@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit-element';
-import { openWcLogo } from './open-wc-logo.js';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { settingsButton } from './settings-button.js';
 
