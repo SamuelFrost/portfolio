@@ -112,11 +112,11 @@ export class PortfolioApplication extends LitElement {
     return html`
       <div class="inner-host ${classMap(this.classes)}">
         <div class="app-header">
-          <button class="menu-icon" tabindex="1" roll="button" @click=${this._toggle_sidebar}>
+          <button class="menu-icon" tabindex="0" roll="button" aria-label="Side bar toggle" @click=${this._toggle_sidebar}>
             ${sidebarCollapseButton}
           </button>
           <div style="flex:1 1 auto; display:flex;"></div>
-          <button class="menu-icon" tabindex="2" roll="button" onclick="alert('in progress settings');">
+          <button class="menu-icon" tabindex="0" roll="button" aria-label="Settings" onclick="alert('in progress settings');">
             ${settingsButton}
           </button>
         </div>
