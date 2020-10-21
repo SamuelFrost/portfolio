@@ -1,36 +1,23 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult } from 'lit-element';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { settingsButton } from './settings-button.js';
-
 import { classMap } from 'lit-html/directives/class-map';
 
-const grid_template_areas = {
-      'sidebar_closed_css': css`
-        :host {
-          grid-template-areas:
-            "header header"
-            "sidebar main"
-            "footer footer";
-        }`,
-      'sidebar_closed_css': css`
-        :host {
-          grid-template-areas:
-            "header header"
-            "main main"
-            "footer footer";
-        }
-        .sidebar{
-          display: none;
-        }`
-  };
-
+  /**
+   * Self-contained reactive grid layout with css driven sidbar toggling.
+   * I intend to make each section fully customizable.
+   * @LitElement
+   * @extends HTMLElement
+   * @demo https://samuelfrost.github.io/portfolio/
+   *
+   */
 export class PortfolioApplication extends LitElement {
   static get properties() {
     return {
       title: { type: String },
       page: { type: String },
       sidebar_closed: { type: Boolean},
-      main_content: { type: LitElement},
+      main_content: { type: Object},
     };
   }
   
