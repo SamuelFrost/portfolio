@@ -2,6 +2,8 @@ import { LitElement, html, css, TemplateResult } from 'lit-element';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { settingsButton } from './settings-button.js';
 import { classMap } from 'lit-html/directives/class-map';
+import { view_welcome_index } from '/src/views/welcome/index.js';
+import { view_welcome_index_copy } from '/src/views/welcome/index_copy.js';
 
   /**
    * Self-contained reactive grid layout with css driven sidbar toggling.
@@ -17,16 +19,14 @@ export class PortfolioApplication extends LitElement {
       title: { type: String },
       page: { type: String },
       sidebar_closed: { type: Boolean},
-      main_content: { type: Object},
+      main_content: { type: TemplateResult},
     };
   }
   
   constructor(){
     super();
     this.sidebar_closed = true;
-    this.main_content = html`
-      <h1>Welcome to my portfolio</h1>
-    `;
+    this.main_content = [view_welcome_index, view_welcome_index_copy];
     this.classes = {'no_sidebar': this.sidebar_closed}
   }
 

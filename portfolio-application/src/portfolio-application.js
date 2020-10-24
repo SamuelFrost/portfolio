@@ -1,3 +1,3 @@
-import { PortfolioApplication } from './PortfolioApplication.js';
+import { PortfolioApplication } from './components/PortfolioApplication.js';
 
 customElements.define('portfolio-application', PortfolioApplication);
