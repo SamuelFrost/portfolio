@@ -2,6 +2,7 @@
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js --environment OUTPUTDIR:dist,BASEDIR:",
     "build:gh-pages": "rimraf gh-pages && rollup -c rollup.config.js --environment OUTPUTDIR:gh-pages,BASEDIR:portfolio",
+    "gsp:gh-pages": "git add gh-pages -f && git commit -m'update gh-pages' && git subtree push --prefix portfolio-application/gh-pages origin gh-pages",
     "start:build": "npm run build && web-dev-server --root-dir ./dist  --node-resolve --compatibility none",
     "start": "web-dev-server --app-index local_index.html --node-resolve --watch"
   },
