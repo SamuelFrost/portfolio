@@ -1,12 +1,11 @@
 ### Welcome to my portfolio
 
 ## What I'm making:  
-While in the end the primary goal of this project is to just make my portfolio, I'm using it as an opportunity to learn the best practices of modern compenent oriented web development.  
+While in the end the primary goal of this project is to just make my portfolio, I'm using it as an opportunity to learn the best practices of modern component oriented web development.  
 Here are a few standards I'm setting for myself in the development process in order to make it both impressive and to push my skills to the next level.  
 
 - Progressive Web Application (PWA)  
-PWAs are a relatively new concept, they are a way to get native like features in a purely web development setting. A well structured PWA can work offline and provide an extremely smooth experience to the user.  
-PWAs are also likely to become a viable alternative to developing android or ios native applications as users get used to them and app stores begin listing them.
+Follow a set of guidelines that allows for an extremely accessible application that provides the best experience possible, online or offline, and on any device, including a native app like experience for mobile.
 https://web.dev/what-are-pwas/  
 good example of a PWA:  
 https://squoosh.app/  
