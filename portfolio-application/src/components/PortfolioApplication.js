@@ -2,8 +2,9 @@ import { LitElement, html, css, TemplateResult } from 'lit-element';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { settingsButton } from './settings-button.js';
 import { classMap } from 'lit-html/directives/class-map';
-import { view_welcome_index } from '/src/views/welcome/index.js';
-import { view_welcome_index_copy } from '/src/views/welcome/index_copy.js';
+// import { view_welcome_index } from '/src/views/welcome/index.js';
+// import { view_welcome_index_copy } from '/src/views/welcome/index_copy.js';
+import { router } from '/src/router.js'
 
   /**
    * Self-contained reactive grid layout with css driven sidbar toggling.
@@ -26,8 +27,10 @@ export class PortfolioApplication extends LitElement {
   constructor(){
     super();
     this.sidebar_closed = true;
-    this.main_content = [view_welcome_index, view_welcome_index_copy];
+    this.main_content = html`<slot></slot>`;
     this.classes = {'no_sidebar': this.sidebar_closed}
+    this.outlet = this;
+    router.setOutlet(this.outlet);
   }
 
   static get styles() {
@@ -122,8 +125,8 @@ export class PortfolioApplication extends LitElement {
         </div>
         <div class="app-sidebar">
           <ul>
-            <div><a>link</a></div>
-            <div><a>link</a></div>
+            <div><a href="/">Home</a></div>
+            <div><a href="/pictures"> pictures</a></div>
           </ul>
         </div>
         <main class="app-main">
@@ -136,6 +139,9 @@ export class PortfolioApplication extends LitElement {
       </div>
     `;
     
+  }
+  _main_content(){
+    return this.shadowRoot.querySelector('.app-main')
   }
   _toggle_sidebar(){
     this.sidebar_closed = !this.sidebar_closed;

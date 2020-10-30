@@ -1,10 +1,17 @@
-import { html } from 'lit-html';
+import { LitElement, html } from 'lit-element';
 import { locale } from '/src/locale.js'
 
+import { locale_extention_data } from "/src/locales/en-pirate/views/welcome/index.js";
 
-locale.add({'welcome': "welcome to me porfolio matey!"});
-
+locale.add(locale_extention_data);
 console.log(locale);
-export const view_welcome_index_copy = html`
-    <h1>Welcome to me portfolio</h1>
-  `
+
+
+export class ViewWelcomeIndexCopy extends LitElement {
+  render() {
+    return html`
+      <h1>${locale.locales.welcome}</h1>
+    `
+  }
+}
+customElements.define('view-welcome-index-copy', ViewWelcomeIndexCopy)
