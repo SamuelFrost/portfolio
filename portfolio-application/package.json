@@ -22,8 +22,10 @@
   "author": "portfolio-application",
   "license": "MIT",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@vaadin/router": "^1.7.2",
     "lit-element": "^2.0.1",
-    "lit-html": "^1.0.0"
+    "lit-html": "^1.0.0",
+    "lit-translate": "^1.2.1"
   }
 }

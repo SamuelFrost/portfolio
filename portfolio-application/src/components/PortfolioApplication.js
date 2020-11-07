@@ -5,6 +5,12 @@ import { classMap } from 'lit-html/directives/class-map';
 // import { view_welcome_index } from '/src/views/welcome/index.js';
 // import { view_welcome_index_copy } from '/src/views/welcome/index_copy.js';
 import { router } from '/src/router.js'
+import { locale } from '/src/locale.js'
+import { registerTranslateConfig, translate, use} from "lit-translate";
+registerTranslateConfig({
+  loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
+});
+use("en-us");
 
   /**
    * Self-contained reactive grid layout with css driven sidbar toggling.
@@ -119,7 +125,7 @@ export class PortfolioApplication extends LitElement {
             ${sidebarCollapseButton}
           </button>
           <div style="flex:1 1 auto; display:flex;"></div>
-          <button class="menu-icon" tabindex="0" roll="button" aria-label="Settings" onclick="alert('in progress settings');">
+          <button class="menu-icon" tabindex="0" roll="button" aria-label="Settings" @click=${this._toggle_settings_menu}>
             ${settingsButton}
           </button>
         </div>
@@ -146,6 +152,10 @@ export class PortfolioApplication extends LitElement {
   _toggle_sidebar(){
     this.sidebar_closed = !this.sidebar_closed;
     this.classes.no_sidebar = this.sidebar_closed;
+  }
+
+  _toggle_language(){
+    use("en-pirate");
   }
 
 }
