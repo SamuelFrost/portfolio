@@ -1,8 +1,6 @@
 import { LitElement, html } from 'lit-element';
-import { registerTranslateConfig, translate} from "lit-translate";
-registerTranslateConfig({
-  loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
-});
+import { translate } from "lit-translate";
+import { localeConfig } from '/src/locale.js';
 
 export class ViewWelcomeIndexCopy extends LitElement {
   render() {
@@ -12,3 +10,5 @@ export class ViewWelcomeIndexCopy extends LitElement {
   }
 }
 customElements.define('view-welcome-index-copy', ViewWelcomeIndexCopy)
+
+localeConfig.initialize();

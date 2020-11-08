@@ -1,6 +1,9 @@
-{"views":
-  {"welcome":
-    {"index_copy":
+{
+  "views":
+  {
+    "welcome":
+    {
+      "index_copy":
       {
         "welcome":"Copy 私のポートフォリオにようこそ！"
       }

@@ -2,15 +2,9 @@ import { LitElement, html, css, TemplateResult } from 'lit-element';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { settingsButton } from './settings-button.js';
 import { classMap } from 'lit-html/directives/class-map';
-// import { view_welcome_index } from '/src/views/welcome/index.js';
-// import { view_welcome_index_copy } from '/src/views/welcome/index_copy.js';
 import { router } from '/src/router.js'
-import { locale } from '/src/locale.js'
-import { registerTranslateConfig, translate, use} from "lit-translate";
-registerTranslateConfig({
-  loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
-});
-use("en-us");
+import { use } from "lit-translate";
+import {localeConfig} from "/src/locale.js"
 
   /**
    * Self-contained reactive grid layout with css driven sidbar toggling.
@@ -125,7 +119,7 @@ export class PortfolioApplication extends LitElement {
             ${sidebarCollapseButton}
           </button>
           <div style="flex:1 1 auto; display:flex;"></div>
-          <button class="menu-icon" tabindex="0" roll="button" aria-label="Settings" @click=${this._toggle_settings_menu}>
+          <button class="menu-icon" tabindex="0" roll="button" aria-label="Settings" @click=${this._toggle_language}>
             ${settingsButton}
           </button>
         </div>
@@ -159,3 +153,4 @@ export class PortfolioApplication extends LitElement {
   }
 
 }
+localeConfig.initialize();

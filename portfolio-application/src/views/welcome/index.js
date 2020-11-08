@@ -1,14 +1,13 @@
 import { LitElement, html } from 'lit-element';
-import { registerTranslateConfig, translate, use} from "lit-translate";
-registerTranslateConfig({
-  loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
-});
-
+import { translate } from "lit-translate";
+import { localeConfig } from '/src/locale.js';
 export class ViewWelcomeIndex extends LitElement {
   render() {
     return html`
-      <h1>${translate("views.welcome.index.welcome") || "Welcome"}</h1>
+      <h1>${translate("views.welcome.index.welcome")}</h1>
     `
   }
 }
 customElements.define('view-welcome-index', ViewWelcomeIndex)
+
+localeConfig.initialize();
