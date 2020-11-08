@@ -1,0 +1,17 @@
+{
+  "views":
+  {
+    "welcome":
+    {
+      "index_copy":
+      {
+        "welcome": "Copy of Welcome to my application!"
+      }
+    ,
+    "index":
+      {
+        "welcome": "Welcome to my application!!"
+      }
+    }
+  }
+}

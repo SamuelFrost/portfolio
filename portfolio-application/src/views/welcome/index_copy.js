@@ -1,10 +1,14 @@
-import { html } from 'lit-html';
-import { locale } from '/src/locale.js'
+import { LitElement, html } from 'lit-element';
+import { translate } from "lit-translate";
+import { localeConfig } from '/src/locale.js';
 
+export class ViewWelcomeIndexCopy extends LitElement {
+  render() {
+    return html`
+      <h1>${translate("views.welcome.index_copy.welcome")}</h1>
+    `
+  }
+}
+customElements.define('view-welcome-index-copy', ViewWelcomeIndexCopy)
 
-locale.add({'welcome': "welcome to me porfolio matey!"});
-
-console.log(locale);
-export const view_welcome_index_copy = html`
-    <h1>Welcome to me portfolio</h1>
-  `
+localeConfig.initialize();

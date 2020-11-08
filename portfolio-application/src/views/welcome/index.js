@@ -1,11 +1,13 @@
-import { html } from 'lit-html';
-import { locale } from '/src/locale.js'
+import { LitElement, html } from 'lit-element';
+import { translate } from "lit-translate";
+import { localeConfig } from '/src/locale.js';
+export class ViewWelcomeIndex extends LitElement {
+  render() {
+    return html`
+      <h1>${translate("views.welcome.index.welcome")}</h1>
+    `
+  }
+}
+customElements.define('view-welcome-index', ViewWelcomeIndex)
 
-import { locale_extention_data } from "/src/locales/en-us/views/welcome/index.js";
-
-locale.add(locale_extention_data);
-
-console.log(locale);
-export const view_welcome_index = html`
-    <h1>${locale.locales.welcome}</h1>
-  `
+localeConfig.initialize();

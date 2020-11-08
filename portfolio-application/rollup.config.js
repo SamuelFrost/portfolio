@@ -2,6 +2,8 @@ import merge from 'deepmerge';
 // use createSpaConfig for bundling a Single Page App
 import { createSpaConfig } from '@open-wc/building-rollup';
 import copy from 'rollup-plugin-copy'
+import json from '@rollup/plugin-json';
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import packageJson from './package.json';
 
 // use createBasicConfig to do regular JS to JS bundling
@@ -59,6 +61,10 @@ export default merge(baseConfig, {
       targets: [
         { src: 'src/favicon.ico', dest: process.env.OUTPUTDIR },
       ]
+    }),
+    json(),
+    dynamicImportVars({
+      // options
     }),
   ]
   // alternatively, you can use your JS as entrypoint for rollup and
