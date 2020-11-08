@@ -125,8 +125,8 @@ export class PortfolioApplication extends LitElement {
         </div>
         <div class="app-sidebar">
           <ul>
-            <div><a href="/">Home</a></div>
-            <div><a href="/pictures"> pictures</a></div>
+            <div><a href="./">Home</a></div>
+            <div><a href="./pictures"> pictures</a></div>
           </ul>
         </div>
         <main class="app-main">
