@@ -16,7 +16,8 @@
     "deepmerge": "^4.2.2",
     "rimraf": "^2.6.3",
     "rollup": "^2.3.4",
-    "rollup-plugin-copy": "^3.3.0"
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-modulepreload": "^1.2.2"
   },
   "name": "portfolio-application",
   "version": "0.0.0",

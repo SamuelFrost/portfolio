@@ -2,6 +2,7 @@ import {translateConfig, registerTranslateConfig, use} from 'lit-translate'
 
 
 class LocaleConfig{
+  //INCLUDE THIS CHUNK
   initialize(){
     if (translateConfig.loader.length === 0){
       registerTranslateConfig({

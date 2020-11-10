@@ -5,6 +5,8 @@ import copy from 'rollup-plugin-copy'
 import json from '@rollup/plugin-json';
 import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import packageJson from './package.json';
+import modulepreload from "rollup-plugin-modulepreload";
+import fs from "fs";
 
 // use createBasicConfig to do regular JS to JS bundling
 // import { createBasicConfig } from '@open-wc/building-rollup';
@@ -63,6 +65,13 @@ export default merge(baseConfig, {
     json(),
     dynamicImportVars({
       // options
+    }),
+    modulepreload({
+      index: "index.html",
+      shouldPreload: ({ facadeModuleId }) =>
+        fs.promises
+          .readFile(facadeModuleId, "utf-8")
+          .then((file) => file.includes("INCLUDE THIS CHUNK")),
     }),
   ],
   // alternatively, you can use your JS as entrypoint for rollup and
