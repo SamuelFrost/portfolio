@@ -15,16 +15,10 @@ npm init @open-wc
 # requires node 10 & npm 6 or higher
 ```
 
-## Scripts
+## Scripts (run from portfolio-application directory)
 
 - `start` runs your app for development, reloading on file changes
 - `start:build` runs your app after it has been built using the build command
 - `build` builds your app and outputs it in your `dist` directory
-- `test` runs your test suite with Web Test Runner
-- `lint` runs the linter for your project
-
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files.
+- `build:gh-pages` builds your app and outputs it in your `gh-pages` directory with some modifications to allow for subdomain hosting on github pages
+- `gsp:gh-pages` Run from main branch to avoid git conflicts. Publishes `gh-pages` directory to github pages.
