@@ -51,24 +51,22 @@ const baseConfig = createSpaConfig({
 });
 
 export default merge(baseConfig, {
-// export default{
+  // export default{
   // if you use createSpaConfig, you can use your index.html as entrypoint,
   // any <script type="module"> inside will be bundled by rollup
   // input: './portfolio-application.js',
-  input: 'index.html',
+  input: "index.html",
   plugins: [
     copy({
-      targets: [
-        { src: 'src/favicon.ico', dest: process.env.OUTPUTDIR },
-      ]
+      targets: [{ src: "src/favicon.ico", dest: process.env.OUTPUTDIR }],
     }),
     json(),
     dynamicImportVars({
       // options
     }),
-  ]
+  ],
   // alternatively, you can use your JS as entrypoint for rollup and
   // optionally set a HTML template manually
   // input: './app.js',
-// };
+  // };
 });

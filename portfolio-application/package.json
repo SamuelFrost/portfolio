@@ -24,6 +24,7 @@
   "author": "portfolio-application",
   "license": "MIT",
   "dependencies": {
+    "@github/details-menu-element": "^1.0.9",
     "@reduxjs/toolkit": "^1.4.0",
     "@vaadin/router": "^1.7.2",
     "lit-element": "^2.0.1",
