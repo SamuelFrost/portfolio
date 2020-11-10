@@ -1,0 +1,1 @@
+import{L as e,h as s,l as i}from"./ccaa55f1.js";import{t as o}from"./f427b6c5.js";let c,t=e=>e;class m extends e{render(){return s(c||(c=t` <h1>${0}</h1> `),o("views.welcome.index_copy.welcome"))}}customElements.define("view-welcome-index-copy",m),i.initialize();export{m as ViewWelcomeIndexCopy};
