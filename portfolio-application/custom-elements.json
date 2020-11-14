@@ -3,13 +3,13 @@
   "tags": [
     {
       "name": "portfolio-application",
-      "description": "An application with a title and an action counter",
+      "description": "An application router, layout, and settings with some basic content.",
       "properties": [
         {
           "name": "title",
           "type": "String",
-          "description": "The title of your application",
-          "default": "Hey there"
+          "description": "Sam's porfolio",
+          "default": "Welcome to Sam's portfolio"
         },
         {
           "name": "page",
