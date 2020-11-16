@@ -1,4 +1,4 @@
-import { h as html, d as directive, A as AttributePart, P as PropertyPart, c as css, L as LitElement, T as TemplateResult, u as use, l as localeConfig } from './locale.js';
+import { h as html, d as directive, A as AttributePart, P as PropertyPart, c as css, L as LitElement, T as TemplateResult, t as translate, u as use, l as localeConfig } from './locale.js';
 
 let _=t=>t,_t;const sidebarCollapseButton=html(_t||(_t=_`
   <svg
@@ -1109,11 +1109,12 @@ try {
 
   vaadin-dev-mode:end **/}const usageStatistics=function(){if(typeof runIfDevelopmentMode==='function'){return runIfDevelopmentMode(maybeGatherAndSendStats);}};window.Vaadin=window.Vaadin||{};window.Vaadin.registrations=window.Vaadin.registrations||[];window.Vaadin.registrations.push({is:'@vaadin/router',version:'1.7.2'});usageStatistics();Router.NavigationTrigger={POPSTATE,CLICK};
 
-const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-welcome-index-copy',action:async()=>{await import('./index_copy.js');}}]);
+const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-standard-error_404',action:async()=>{await import('./error_404.js');}}]);
 
 let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
-  *{
-    font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  * {
+    font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
+      Meiryo, sans-serif;
   }
   .menu-icon-container {
     box-sizing: border-box;
@@ -1148,14 +1149,24 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
   .menu-icon:active {
     background: #aaa;
   }
+  .route-primary {
+    width: 100%;
+    border-bottom: 1px solid grey;
+  }
+  .route {
+    background-color: rgba(220, 220, 220, 0.3);
+  }
+  .route:hover {
+    background-color: rgba(10, 15, 30, 0.2);
+  }
 `));/**
-   * Self-contained reactive grid layout with css driven sidbar toggling.
-   * I intend to make each section fully customizable.
-   * @LitElement
-   * @extends HTMLElement
-   * @demo https://samuelfrost.github.io/portfolio/
-   *
-   */class PortfolioApplication extends LitElement{static get properties(){return {title:{type:String},page:{type:String},sidebar_closed:{type:Boolean},main_content:{type:TemplateResult}};}constructor(){super();this.sidebar_closed=true;this.main_content=html(_t2||(_t2=_$1`<slot></slot>`));this.classes={'no_sidebar':this.sidebar_closed};this.outlet=this;router.setOutlet(this.outlet);}static get styles(){return [headerStyles,css(_t3||(_t3=_$1`
+ * Self-contained reactive grid layout with css driven sidbar toggling.
+ * I intend to make each section fully customizable.
+ * @LitElement
+ * @extends HTMLElement
+ * @demo https://samuelfrost.github.io/portfolio/
+ *
+ */class PortfolioApplication extends LitElement{static get properties(){return {title:{type:String},page:{type:String},sidebar_closed:{type:Boolean},main_content:{type:TemplateResult}};}constructor(){super();this.sidebar_closed=true;this.main_content=html(_t2||(_t2=_$1`<slot></slot>`));this.classes={no_sidebar:this.sidebar_closed};this.outlet=this;router.setOutlet(this.outlet);}static get styles(){return [headerStyles,css(_t3||(_t3=_$1`
         .inner-host {
           padding: 6px;
           box-sizing: border-box;
@@ -1190,6 +1201,8 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
         .app-sidebar {
           grid-area: sidebar;
           background: #aaa;
+          display: flex;
+          flex-direction: column;
         }
         .app-main {
           grid-area: main;
@@ -1218,13 +1231,15 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
             </button>
           </div>
           <div style="flex:1 1 auto; display:flex;"></div>
-            <settings-drop-down-button></settings-drop-down-button>
+          <settings-drop-down-button></settings-drop-down-button>
         </div>
         <div class="app-sidebar">
-          <ul>
-            <div><a href="./">Home</a></div>
-            <div><a href="./pictures"> pictures</a></div>
-          </ul>
+          <a href="./" class="route route-primary">
+            <div>${0}</div>
+          </a>
+          <a href="./some_page" class="route route-primary">
+            <div>${0}</div>
+          </a>
         </div>
         <main class="app-main">${0}</main>
         <div class="app-footer">
@@ -1234,7 +1249,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
           >&nbsp;<a href="https://github.com/SamuelFrost">Github</a>
         </div>
       </div>
-    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,this.main_content);}_main_content(){return this.shadowRoot.querySelector('.app-main');}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();
+    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("common.some_page"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();
 
 let _$2=t=>t,_t$2;const settingsButtonImage=html(_t$2||(_t$2=_$2`
   <?xml version="1.1" ?><svg
@@ -1260,7 +1275,7 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
     style="cursor:default;border:1px black solid;bord-radius:1px;background:#fff;"
   >
     <summary tabindex="0" aria-label="language">
-      language <span data-menu-button></span>
+      Language <span data-menu-button></span>
     </summary>
     <details-menu role="menu">
       <button
@@ -1290,18 +1305,18 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
     </details-menu>
   </details>
 `),()=>{use("en-us");},()=>{use("en-pirate");},()=>{use("ja-jp");});const settingsDetailsMenu=html(_t3$1||(_t3$1=_$3`
-  <details-menu role="menu" class="dropdown-menu dropdown-menu-sw">
+  <details-menu role="menu" class="dropdown-menu">
     ${0}
     <button type="button" role="menuitem">
-      Display Preferences (in progress)
+      ${0} (${0})
     </button>
   </details-menu>
-`),languageMenu);class SettingsDropDownButton extends LitElement{static get styles(){return [headerStyles,css(_t4$1||(_t4$1=_$3`
+`),languageMenu,translate("settings.display_preferences"),translate("common.in_progress"));class SettingsDropDownButton extends LitElement{static get styles(){return [headerStyles,css(_t4$1||(_t4$1=_$3`
         :host {
-          --color-bg-overlay: #AAA;
-          --color-border-overlay: #AAA;
-          --color-dropdown-shadow: #AAA;
-          --color-border-overlay: #AAA;
+          --color-bg-overlay: #aaa;
+          --color-border-overlay: #aaa;
+          --color-dropdown-shadow: #aaa;
+          --color-border-overlay: #aaa;
           --thickness-border-overlay: 1px;
         }
         .details-reset > summary {
@@ -1331,6 +1346,7 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
 
           display: flex;
           flex-direction: column;
+          width: clamp(10ch, 40ch, 50vw)
         }
       `))];}render(){return html(_t5||(_t5=_$3`
       <details class="menu-icon-container details-reset">
