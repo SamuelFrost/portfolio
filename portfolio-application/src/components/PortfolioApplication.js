@@ -2,7 +2,7 @@ import { LitElement, html, css, TemplateResult } from 'lit-element';
 import { sidebarCollapseButton } from './sidebar-collapse-button.js';
 import { classMap } from 'lit-html/directives/class-map';
 import { router } from '/src/router.js'
-import { use } from "lit-translate";
+import { use, translate } from "lit-translate";
 import { localeConfig } from "/src/locale.js"
 
 export const headerStyles = css`
@@ -141,12 +141,16 @@ export class PortfolioApplication extends LitElement {
             </button>
           </div>
           <div style="flex:1 1 auto; display:flex;"></div>
-            <settings-drop-down-button></settings-drop-down-button>
+          <settings-drop-down-button></settings-drop-down-button>
         </div>
         <div class="app-sidebar">
           <ul>
-            <div><a href="./">Home</a></div>
-            <div><a href="./pictures"> pictures</a></div>
+            <div><a href="./">${translate('views.welcome.index.short_link')}</a></div>
+            <div>
+              <a href="./some_page"
+                >${translate('common.some_page')}</a
+              >
+            </div>
           </ul>
         </div>
         <main class="app-main">${this.main_content}</main>

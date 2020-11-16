@@ -10,7 +10,7 @@ router.setRoutes([
   },
   {
     path: '(.*)',
-    component: 'view-welcome-index-copy',
-    action: async () => { await import ('/src/views/welcome/index_copy.js');}
+    component: 'view-standard-error_404',
+    action: async () => { await import ('/src/views/standard/error_404.js');}
   },
 ]);

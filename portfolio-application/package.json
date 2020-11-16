@@ -20,7 +20,7 @@
     "rollup-plugin-copy": "^3.3.0"
   },
   "name": "portfolio-application",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Webcomponent portfolio-application following open-wc recommendations",
   "author": "portfolio-application",
   "license": "MIT",

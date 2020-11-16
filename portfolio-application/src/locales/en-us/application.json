@@ -1,15 +1,21 @@
 {
+  "common":{
+    "some_page": "A not available page"
+  },
   "views":
   {
+    "standard":
+    {
+      "error_404":
+      {
+        "main": "Page not found."
+      }
+    },
     "welcome":
     {
-      "index_copy":
-      {
-        "welcome": "Copy of Welcome to my portfolio!"
-      }
-    ,
     "index":
       {
+        "short_link": "Home",
         "welcome": "Welcome to my portfolio!"
       }
     }
