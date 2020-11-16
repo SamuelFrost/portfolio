@@ -1,22 +1,21 @@
 {
-  "common":{
-    "some_page": "存在しないページ"
+  "common": {
+    "some_page": "存在しないページ",
+    "in_progress": "未完成"
   },
-  "views":
-  {
-    "standard":
-    {
-      "error_404":
-      {
+  "settings": {
+    "display_preferences": "表示設定"
+  },
+  "views": {
+    "standard": {
+      "error_404": {
         "main": "このページは存在しません."
       }
     },
-    "welcome":
-    {
-    "index":
-      {
+    "welcome": {
+      "index": {
         "short_link": "ホーム",
-        "welcome":"私のポートフォリオにようこそ！"
+        "welcome": "私のポートフォリオにようこそ！"
       }
     }
   }

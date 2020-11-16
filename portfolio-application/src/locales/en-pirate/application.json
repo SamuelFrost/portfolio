@@ -1,20 +1,19 @@
 {
-  "common":{
-    "some_page": "Some place nowhere"
+  "common": {
+    "some_page": "Some place nowhere",
+    "in_progress": "workin' on it"
   },
-  "views":
-  {
-    "standard":
-    {
-      "error_404":
-      {
+  "settings": {
+    "display_preferences": "How things be lookin' like"
+  },
+  "views": {
+    "standard": {
+      "error_404": {
         "main": "This not be a page we got available matey."
       }
     },
-    "welcome":
-    {
-    "index":
-      {
+    "welcome": {
+      "index": {
         "short_link": "Home",
         "welcome": "Welcome to me app matey!"
       }

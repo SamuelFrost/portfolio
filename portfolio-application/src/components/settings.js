@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element'
 import { settingsButtonImage } from './settings-button-image.js'
 import { headerStyles } from './PortfolioApplication.js'
-import { use } from 'lit-translate'
+import { use, translate } from "lit-translate";
 import "@github/details-menu-element"
 
 export const settingsButton = html`
@@ -16,7 +16,7 @@ export const languageMenu = html`
     style="cursor:default;border:1px black solid;bord-radius:1px;background:#fff;"
   >
     <summary tabindex="0" aria-label="language">
-      language <span data-menu-button></span>
+      Language <span data-menu-button></span>
     </summary>
     <details-menu role="menu">
       <button
@@ -56,7 +56,7 @@ export const settingsDetailsMenu = html`
   <details-menu role="menu" class="dropdown-menu dropdown-menu-sw">
     ${languageMenu}
     <button type="button" role="menuitem">
-      Display Preferences (in progress)
+      ${translate("settings.display_preferences")} (${translate("common.in_progress")})
     </button>
   </details-menu>
 `;

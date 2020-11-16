@@ -1,20 +1,19 @@
 {
-  "common":{
-    "some_page": "A not available page"
+  "common": {
+    "some_page": "A not available page",
+    "in_progress": "in progress"
   },
-  "views":
-  {
-    "standard":
-    {
-      "error_404":
-      {
+  "settings": {
+    "display_preferences": "Display Preferences"
+  },
+  "views": {
+    "standard": {
+      "error_404": {
         "main": "Page not found."
       }
     },
-    "welcome":
-    {
-    "index":
-      {
+    "welcome": {
+      "index": {
         "short_link": "Home",
         "welcome": "Welcome to my portfolio!"
       }
