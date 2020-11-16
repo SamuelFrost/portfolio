@@ -1,13 +1,14 @@
-import { LitElement, html, css, TemplateResult } from 'lit-element';
-import { sidebarCollapseButton } from './sidebar-collapse-button.js';
-import { classMap } from 'lit-html/directives/class-map';
-import { router } from '/src/router.js'
+import { LitElement, html, css, TemplateResult } from "lit-element";
+import { sidebarCollapseButton } from "./sidebar-collapse-button.js";
+import { classMap } from "lit-html/directives/class-map";
+import { router } from "/src/router.js";
 import { use, translate } from "lit-translate";
-import { localeConfig } from "/src/locale.js"
+import { localeConfig } from "/src/locale.js";
 
 export const headerStyles = css`
-  *{
-    font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  * {
+    font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
+      Meiryo, sans-serif;
   }
   .menu-icon-container {
     box-sizing: border-box;
@@ -42,30 +43,40 @@ export const headerStyles = css`
   .menu-icon:active {
     background: #aaa;
   }
+  .route-primary {
+    width: 100%;
+    border-bottom: 1px solid grey;
+  }
+  .route {
+    background-color: rgba(220, 220, 220, 0.3);
+  }
+  .route:hover {
+    background-color: rgba(10, 15, 30, 0.2);
+  }
 `;
 
-  /**
-   * Self-contained reactive grid layout with css driven sidbar toggling.
-   * I intend to make each section fully customizable.
-   * @LitElement
-   * @extends HTMLElement
-   * @demo https://samuelfrost.github.io/portfolio/
-   *
-   */
+/**
+ * Self-contained reactive grid layout with css driven sidbar toggling.
+ * I intend to make each section fully customizable.
+ * @LitElement
+ * @extends HTMLElement
+ * @demo https://samuelfrost.github.io/portfolio/
+ *
+ */
 export class PortfolioApplication extends LitElement {
   static get properties() {
     return {
       title: { type: String },
       page: { type: String },
-      sidebar_closed: { type: Boolean},
-      main_content: { type: TemplateResult},
+      sidebar_closed: { type: Boolean },
+      main_content: { type: TemplateResult },
     };
   }
-  constructor(){
+  constructor() {
     super();
     this.sidebar_closed = true;
     this.main_content = html`<slot></slot>`;
-    this.classes = {'no_sidebar': this.sidebar_closed}
+    this.classes = { no_sidebar: this.sidebar_closed };
     this.outlet = this;
     router.setOutlet(this.outlet);
   }
@@ -108,6 +119,8 @@ export class PortfolioApplication extends LitElement {
         .app-sidebar {
           grid-area: sidebar;
           background: #aaa;
+          display: flex;
+          flex-direction: column;
         }
         .app-main {
           grid-area: main;
@@ -144,14 +157,12 @@ export class PortfolioApplication extends LitElement {
           <settings-drop-down-button></settings-drop-down-button>
         </div>
         <div class="app-sidebar">
-          <ul>
-            <div><a href="./">${translate('views.welcome.index.short_link')}</a></div>
-            <div>
-              <a href="./some_page"
-                >${translate('common.some_page')}</a
-              >
-            </div>
-          </ul>
+          <a href="./" class="route route-primary">
+            <div>${translate("views.welcome.index.short_link")}</div>
+          </a>
+          <a href="./some_page" class="route route-primary">
+            <div>${translate("common.some_page")}</div>
+          </a>
         </div>
         <main class="app-main">${this.main_content}</main>
         <div class="app-footer">
@@ -163,17 +174,16 @@ export class PortfolioApplication extends LitElement {
       </div>
     `;
   }
-  _main_content(){
-    return this.shadowRoot.querySelector('.app-main')
+  _main_content() {
+    return this.shadowRoot.querySelector(".app-main");
   }
-  _toggle_sidebar(){
+  _toggle_sidebar() {
     this.sidebar_closed = !this.sidebar_closed;
     this.classes.no_sidebar = this.sidebar_closed;
   }
 
-  _toggle_language(){
+  _toggle_language() {
     use("en-pirate");
   }
-
 }
 localeConfig.initialize();

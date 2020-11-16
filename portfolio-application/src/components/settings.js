@@ -53,7 +53,7 @@ export const languageMenu = html`
   </details>
 `;
 export const settingsDetailsMenu = html`
-  <details-menu role="menu" class="dropdown-menu dropdown-menu-sw">
+  <details-menu role="menu" class="dropdown-menu">
     ${languageMenu}
     <button type="button" role="menuitem">
       ${translate("settings.display_preferences")} (${translate("common.in_progress")})
