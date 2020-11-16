@@ -67,10 +67,10 @@ export class SettingsDropDownButton extends LitElement {
       headerStyles,
       css`
         :host {
-          --color-bg-overlay: #AAA;
-          --color-border-overlay: #AAA;
-          --color-dropdown-shadow: #AAA;
-          --color-border-overlay: #AAA;
+          --color-bg-overlay: #aaa;
+          --color-border-overlay: #aaa;
+          --color-dropdown-shadow: #aaa;
+          --color-border-overlay: #aaa;
           --thickness-border-overlay: 1px;
         }
         .details-reset > summary {
@@ -100,6 +100,7 @@ export class SettingsDropDownButton extends LitElement {
 
           display: flex;
           flex-direction: column;
+          width: clamp(10ch, 40ch, 50vw)
         }
       `,
     ];
