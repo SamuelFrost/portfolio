@@ -1,8 +1,6 @@
 import json from '@rollup/plugin-json';
 import { rollupAdapter } from "@web/dev-server-rollup";
 
-
-
 export default {
   open: true,
   nodeResolve: true,
@@ -15,5 +13,7 @@ export default {
     // serve .module.css files as js
     "**/*.module.css": "js",
   },
-  plugins: [rollupAdapter(json())],
+  plugins: [
+    rollupAdapter(json()),
+  ],
 };

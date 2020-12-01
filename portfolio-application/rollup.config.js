@@ -21,30 +21,37 @@ const baseConfig = createSpaConfig({
   // developmentMode: process.env.ROLLUP_WATCH === 'true',
   developmentMode: true,
   // set to true to inject the service worker registration into your index.html
-  injectServiceWorker: true,
+  injectServiceWorker: false,
+  // workbox: {
+  //   swDest: "./service-worker.js",
+  // },
 
   html: {
     transform: [
       // inject lang attribute
-      html => html.replace('<html>', '<html lang="en-US">'),
+      (html) => html.replace("<html>", '<html lang="en-US">'),
       // inject app version
-      html => html.replace(
-          '</body>',
-          `<script>window.APP_VERSION = "${packageJson.version}"</script></body>`,
+      (html) =>
+        html.replace(
+          "</body>",
+          `<script>window.APP_VERSION = "${packageJson.version}"</script></body>`
         ),
       // inject base route (for subdomain hosting like gh-pages)
-      html => html.replace(
-        '<base href="/">',
-        `<base href="/${process.env.BASEDIR}">`
-      ),
-      html => html.replace(
-      '<link rel="icon" href="/favicon.ico" type="image/ico">',
-      `<link rel="icon" href="/${process.env.BASEDIR}favicon.ico" type="image/ico">`
-      ),
-      html => html.replace(
-      '<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">',
-      `<link rel="shortcut icon" href="/${process.env.BASEDIR}favicon.ico" type="image/x-icon">`
-      ),
+      (html) =>
+        html.replace(
+          '<base href="/">',
+          `<base href="/${process.env.BASEDIR}">`
+        ),
+      (html) =>
+        html.replace(
+          '<link rel="icon" href="/favicon.ico" type="image/ico">',
+          `<link rel="icon" href="/${process.env.BASEDIR}favicon.ico" type="image/ico">`
+        ),
+      (html) =>
+        html.replace(
+          '<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">',
+          `<link rel="shortcut icon" href="/${process.env.BASEDIR}favicon.ico" type="image/x-icon">`
+        ),
     ],
     // publicPath: process.env.BASEDIR
   },
