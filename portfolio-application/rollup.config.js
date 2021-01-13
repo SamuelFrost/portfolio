@@ -61,7 +61,10 @@ if (process.env.OUTPUTDIR == 'gh-pages')
   config = merge(config, {
     plugins: [
       copy({
-        targets: [{ src: "src/404.html", dest: process.env.OUTPUTDIR }],
+        targets: [
+          { src: "src/404.html", dest: process.env.OUTPUTDIR },
+          { src: "src/404.js", dest: process.env.OUTPUTDIR },
+        ],
       }),
     ],
   });
