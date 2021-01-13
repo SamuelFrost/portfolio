@@ -1109,7 +1109,7 @@ try {
 
   vaadin-dev-mode:end **/}const usageStatistics=function(){if(typeof runIfDevelopmentMode==='function'){return runIfDevelopmentMode(maybeGatherAndSendStats);}};window.Vaadin=window.Vaadin||{};window.Vaadin.registrations=window.Vaadin.registrations||[];window.Vaadin.registrations.push({is:'@vaadin/router',version:'1.7.2'});usageStatistics();Router.NavigationTrigger={POPSTATE,CLICK};
 
-const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-standard-error_404',action:async()=>{await import('./error_404.js');}}]);
+const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-standard-error_404',action:async()=>{await import('./error_404.js');}}]);const redirect_to='';
 
 let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
   * {
@@ -1249,7 +1249,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
           >&nbsp;<a href="https://github.com/SamuelFrost">Github</a>
         </div>
       </div>
-    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("common.some_page"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();if(typeof redirect_to!="undefined"&&redirect_to!=""){window.location.href=redirect_to;var redirect_to="";}
+    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("common.some_page"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();if(typeof redirect_to$1!="undefined"&&redirect_to$1!=""){window.location.href=redirect_to$1;var redirect_to$1="";}
 
 let _$2=t=>t,_t$2;const settingsButtonImage=html(_t$2||(_t$2=_$2`
   <?xml version="1.1" ?><svg
