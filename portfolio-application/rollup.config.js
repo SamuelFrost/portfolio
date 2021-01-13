@@ -65,7 +65,10 @@ export default merge(baseConfig, {
   input: "index.html",
   plugins: [
     copy({
-      targets: [{ src: "src/favicon.ico", dest: process.env.OUTPUTDIR }],
+      targets: [
+        { src: "src/favicon.ico", dest: process.env.OUTPUTDIR },
+        { src: "src/404.html", dest: process.env.OUTPUTDIR },
+      ],
     }),
     json(),
     dynamicImportVars({

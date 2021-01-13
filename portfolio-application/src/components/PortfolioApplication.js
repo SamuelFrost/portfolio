@@ -5,6 +5,10 @@ import { router } from "/src/router.js";
 import { use, translate } from "lit-translate";
 import { localeConfig } from "/src/locale.js";
 
+if (typeof redirect_to != "undefined" && redirect_to != "") {
+  window.location.href = redirect_to;
+  var redirect_to = "";
+}
 export const headerStyles = css`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
