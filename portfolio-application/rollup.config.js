@@ -9,7 +9,7 @@ import packageJson from './package.json';
 // use createBasicConfig to do regular JS to JS bundling
 // import { createBasicConfig } from '@open-wc/building-rollup';
 
-const baseConfig = createSpaConfig({
+let config = createSpaConfig({
   // use the outputdir option to modify where files are output
   outputDir: process.env.OUTPUTDIR,
 
@@ -57,7 +57,16 @@ const baseConfig = createSpaConfig({
   },
 });
 
-export default merge(baseConfig, {
+if (process.env.OUTPUTDIR == 'gh-pages')
+  config = merge(config, {
+    plugins: [
+      copy({
+        targets: [{ src: "src/404.html", dest: process.env.OUTPUTDIR }],
+      }),
+    ],
+  });
+
+export default merge(config, {
   // export default{
   // if you use createSpaConfig, you can use your index.html as entrypoint,
   // any <script type="module"> inside will be bundled by rollup
@@ -67,7 +76,6 @@ export default merge(baseConfig, {
     copy({
       targets: [
         { src: "src/favicon.ico", dest: process.env.OUTPUTDIR },
-        { src: "src/404.html", dest: process.env.OUTPUTDIR },
       ],
     }),
     json(),
