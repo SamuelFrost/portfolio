@@ -14,3 +14,4 @@ router.setRoutes([
     action: async () => { await import ('/src/views/standard/error_404.js');}
   },
 ]);
+export const redirect_to = '';
