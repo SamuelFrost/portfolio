@@ -1111,7 +1111,7 @@ try {
 
 const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-standard-error_404',action:async()=>{await import('./error_404.js');}}]);
 
-let _$1=t=>t,_t$1,_t2,_t3,_t4;if(typeof redirect_to!="undefined"&&redirect_to!=""){window.location.href=redirect_to;var redirect_to="";}const headerStyles=css(_t$1||(_t$1=_$1`
+let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
@@ -1249,7 +1249,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;if(typeof redirect_to!="undefined"&&redirect_to!="
           >&nbsp;<a href="https://github.com/SamuelFrost">Github</a>
         </div>
       </div>
-    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("common.some_page"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();
+    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("common.some_page"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();if(typeof redirect_to!="undefined"&&redirect_to!=""){window.location.href=redirect_to;var redirect_to="";}
 
 let _$2=t=>t,_t$2;const settingsButtonImage=html(_t$2||(_t$2=_$2`
   <?xml version="1.1" ?><svg
