@@ -1111,7 +1111,7 @@ try {
 
 const router=new Router();router.setRoutes([{path:'/',component:'view-welcome-index',action:async()=>{await import('./index.js');}},{path:'(.*)',component:'view-standard-error_404',action:async()=>{await import('./error_404.js');}}]);
 
-let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
+let _$1=t=>t,_t$1,_t2,_t3,_t4;if(typeof redirect_to!="undefined"&&redirect_to!=""){window.location.href=redirect_to;var redirect_to="";}const headerStyles=css(_t$1||(_t$1=_$1`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
