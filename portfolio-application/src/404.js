@@ -1,7 +1,5 @@
-
-import { redirect_to } from "/src/router.js";
-
+// TODO: make links server agnostic
 setTimeout(() => {
-    var redirect_to = window.location;
-    window.location.href = "/portfolio";
+    sessionStorage.setItem("redirect_pathname", window.location.pathname);
+    window.location.pathname = "/portfolio";
   }, 3000)

@@ -188,7 +188,15 @@ export class PortfolioApplication extends LitElement {
 }
 localeConfig.initialize();
 
-if (typeof redirect_to != "undefined" && redirect_to != "") {
-  window.location.href = redirect_to;
-  var redirect_to = "";
+/*
+// Redirect path is currently being set when the 404 page is visited.
+// Ideally the server would set this if necessary, but the current web host - github pages - doesn't have much server customizability in this respect.
+// This should only occur when a user is accessing a specific page via a url and using the app for the first time, otherwise the service worker should intercept the request
+*/
+if (sessionStorage.getItem("redirect_pathname") != null) {
+  router.render(
+    { pathname: sessionStorage.getItem("redirect_pathname") },
+    true
+  );
+  sessionStorage.removeItem("redirect_pathname", "");
 }
