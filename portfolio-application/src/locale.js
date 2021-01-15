@@ -1,15 +1,18 @@
 import {translateConfig, registerTranslateConfig, use} from 'lit-translate'
 
 
-class LocaleConfig{
-  initialize(){
-    if (translateConfig.loader.length === 0){
+class LocaleConfig {
+  get lang(){
+    return translateConfig.lang
+  }
+  initialize() {
+    if (translateConfig.loader.length === 0) {
       registerTranslateConfig({
         // loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
-        loader: lang => import(`./locales/${lang}/application.json`)
+        loader: (lang) => import(`./locales/${lang}/application.json`),
       });
     }
-    if(translateConfig.lang === undefined){
+    if (translateConfig.lang === undefined) {
       translateConfig.lang = "en-us";
       use("en-us");
     }

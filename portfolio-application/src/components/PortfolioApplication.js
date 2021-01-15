@@ -160,8 +160,8 @@ export class PortfolioApplication extends LitElement {
           <a href="./" class="route route-primary">
             <div>${translate("views.welcome.index.short_link")}</div>
           </a>
-          <a href="./some_page" class="route route-primary">
-            <div>${translate("common.some_page")}</div>
+          <a href="./schedule" class="route route-primary">
+            <div>${translate("views.schedule.index.short_link")}</div>
           </a>
         </div>
         <main class="app-main">${this.main_content}</main>
