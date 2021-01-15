@@ -1433,7 +1433,7 @@ function __variableDynamicImportRuntime0__(path) {
      default: return Promise.reject(new Error("Unknown variable dynamic import: " + path));
    }
  }
-class LocaleConfig{initialize(){if(translateConfig.loader.length===0){registerTranslateConfig({// loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
+class LocaleConfig{get lang(){return translateConfig.lang;}initialize(){if(translateConfig.loader.length===0){registerTranslateConfig({// loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
 loader:lang=>__variableDynamicImportRuntime0__(`./locales/${lang}/application.json`)});}if(translateConfig.lang===undefined){translateConfig.lang="en-us";use("en-us");}}}const localeConfig=new LocaleConfig();// class Locale{
 //   constructor(){
 //     this.locales = {}
