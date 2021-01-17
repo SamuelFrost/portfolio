@@ -1,4 +1,4 @@
-import { h as html, d as directive, A as AttributePart, P as PropertyPart, c as css, L as LitElement, T as TemplateResult, t as translate, u as use, l as localeConfig } from './locale.js';
+import { h as html, d as directive, A as AttributePart, P as PropertyPart, L as LitElement, t as translate, c as css, T as TemplateResult, u as use, l as localeConfig } from './locale.js';
 
 let _=t=>t,_t;const sidebarCollapseButton=html(_t||(_t=_`
   <svg
@@ -1109,12 +1109,88 @@ try {
 
   vaadin-dev-mode:end **/}const usageStatistics=function(){if(typeof runIfDevelopmentMode==='function'){return runIfDevelopmentMode(maybeGatherAndSendStats);}};window.Vaadin=window.Vaadin||{};window.Vaadin.registrations=window.Vaadin.registrations||[];window.Vaadin.registrations.push({is:'@vaadin/router',version:'1.7.2'});usageStatistics();Router.NavigationTrigger={POPSTATE,CLICK};
 
-const router=new Router();router.setRoutes([{path:"/",component:"view-welcome-index",action:async()=>{await import('./index.js');}},{path:"/schedule",component:"view-schedule-index",action:async()=>{await import('./index2.js');}},{path:"(.*)",component:"view-standard-error_404",action:async()=>{await import('./error_404.js');}}]);
+let _$1=t=>t,_t$1;const router=new Router();router.setRoutes([{name:"home",path:"/",component:"view-welcome-index",action:async()=>{await import('./index.js');}},{name:"schedule",path:"/schedule",component:"view-schedule-index",action:async()=>{await import('./index2.js');}},{path:"(.*)",component:"view-standard-error_404",action:async()=>{await import('./error_404.js');}}]);/**
+ * A layer on top of the normal anchor link that can generate appropriate hrefs without the need for relative paths
+ *
+ * @param {String}  href      URL to be utilized in the anchor tag. Will be prioritized over routePath or routeName.
+ * @param {String}  routeName The route name as defined by the name field of the router's defined routes. Will be prioritized over routePath.
+ * @param {String}  routePath The route path as defined by the path field of the router's defined routes. (Doesn't work with regex)
+ *
+ */class RouterLink extends LitElement{static get properties(){return {routeName:{type:String},routePath:{type:String},href:{type:String,reflect:true}};}constructor(href,routeName,routePath){super();this.href=href;this.routeName=routeName;this.routePath=routePath;}render(){if(typeof this.href==="undefined"&&typeof this.routeName==="string"){try{this.href=router.urlForName(this.routeName);}catch(error){console.log(`invalid navigation link routeName: ${this.routeName}`);console.log(`${error}`);}}if(typeof this.href==="undefined"&&typeof routePath==="string"){try{this.href=router.urlForPath(this.routePath);}catch(error){console.log(`invalid navigation link routePath: ${this.routePath}`);console.log(`${error}`);}}return html(_t$1||(_t$1=_$1`
+      <a href="${0}">
+        <slot></slot>
+      </a>
+    `),this.href);}}
 
-let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
+class DetailsMenuElement extends HTMLElement{constructor(){super();}get preload(){return this.hasAttribute('preload');}set preload(value){if(value){this.setAttribute('preload','');}else {this.removeAttribute('preload');}}get src(){return this.getAttribute('src')||'';}set src(value){this.setAttribute('src',value);}connectedCallback(){if(!this.hasAttribute('role'))this.setAttribute('role','menu');const details=this.parentElement;if(!details)return;const summary=details.querySelector('summary');if(summary){summary.setAttribute('aria-haspopup','menu');if(!summary.hasAttribute('role'))summary.setAttribute('role','button');}const subscriptions=[fromEvent(details,'compositionstart',e=>trackComposition(this,e)),fromEvent(details,'compositionend',e=>trackComposition(this,e)),fromEvent(details,'click',e=>shouldCommit(details,this,e)),fromEvent(details,'change',e=>shouldCommit(details,this,e)),fromEvent(details,'keydown',e=>keydown(details,this,e)),fromEvent(details,'toggle',()=>loadFragment(details,this),{once:true}),fromEvent(details,'toggle',()=>closeCurrentMenu(details)),this.preload?fromEvent(details,'mouseover',()=>loadFragment(details,this),{once:true}):NullSubscription,...focusOnOpen(details)];states.set(this,{subscriptions,loaded:false,isComposing:false});}disconnectedCallback(){const state=states.get(this);if(!state)return;states.delete(this);for(const sub of state.subscriptions){sub.unsubscribe();}}}const states=new WeakMap();const NullSubscription={unsubscribe(){}};function fromEvent(target,eventName,onNext,options=false){target.addEventListener(eventName,onNext,options);return {unsubscribe:()=>{target.removeEventListener(eventName,onNext,options);}};}function loadFragment(details,menu){const src=menu.getAttribute('src');if(!src)return;const state=states.get(menu);if(!state)return;if(state.loaded)return;state.loaded=true;const loader=menu.querySelector('include-fragment');if(loader&&!loader.hasAttribute('src')){loader.addEventListener('loadend',()=>autofocus(details));loader.setAttribute('src',src);}}function focusOnOpen(details){let isMouse=false;const onmousedown=()=>isMouse=true;const onkeydown=()=>isMouse=false;const ontoggle=()=>{if(!details.hasAttribute('open'))return;if(autofocus(details))return;if(!isMouse)focusFirstItem(details);};return [fromEvent(details,'mousedown',onmousedown),fromEvent(details,'keydown',onkeydown),fromEvent(details,'toggle',ontoggle)];}function closeCurrentMenu(details){if(!details.hasAttribute('open'))return;for(const menu of document.querySelectorAll('details[open] > details-menu')){const opened=menu.closest('details');if(opened&&opened!==details&&!opened.contains(details)){opened.removeAttribute('open');}}}function autofocus(details){if(!details.hasAttribute('open'))return false;const input=details.querySelector('[autofocus]');if(input){input.focus();return true;}else {return false;}}function focusFirstItem(details){const selected=document.activeElement;if(selected&&isMenuItem(selected)&&details.contains(selected))return;const target=sibling(details,true);if(target)target.focus();}function sibling(details,next){const options=Array.from(details.querySelectorAll('[role^="menuitem"]:not([hidden]):not([disabled]):not([aria-disabled="true"])'));const selected=document.activeElement;const index=selected instanceof HTMLElement?options.indexOf(selected):-1;const found=next?options[index+1]:options[index-1];const def=next?options[0]:options[options.length-1];return found||def;}const ctrlBindings=navigator.userAgent.match(/Macintosh/);function shouldCommit(details,menu,event){const target=event.target;if(!(target instanceof Element))return;if(target.closest('details')!==details)return;if(event.type==='click'){const menuitem=target.closest('[role="menuitem"], [role="menuitemradio"]');const onlyCommitOnChangeEvent=menuitem&&menuitem.tagName==='LABEL'&&menuitem.querySelector('input');if(menuitem&&!onlyCommitOnChangeEvent){commit(menuitem,details);}}else if(event.type==='change'){const menuitem=target.closest('[role="menuitemradio"], [role="menuitemcheckbox"]');if(menuitem)commit(menuitem,details);}}function updateChecked(selected,details){for(const el of details.querySelectorAll('[role="menuitemradio"], [role="menuitemcheckbox"]')){const input=el.querySelector('input[type="radio"], input[type="checkbox"]');let checkState=(el===selected).toString();if(input instanceof HTMLInputElement){checkState=input.indeterminate?'mixed':input.checked.toString();}el.setAttribute('aria-checked',checkState);}}function commit(selected,details){if(selected.hasAttribute('disabled')||selected.getAttribute('aria-disabled')==='true')return;const menu=selected.closest('details-menu');if(!menu)return;const dispatched=menu.dispatchEvent(new CustomEvent('details-menu-select',{cancelable:true,detail:{relatedTarget:selected}}));if(!dispatched)return;updateLabel(selected,details);updateChecked(selected,details);if(selected.getAttribute('role')!=='menuitemcheckbox')close(details);menu.dispatchEvent(new CustomEvent('details-menu-selected',{detail:{relatedTarget:selected}}));}function keydown(details,menu,event){if(!(event instanceof KeyboardEvent))return;if(details.querySelector('details[open]'))return;const state=states.get(menu);if(!state||state.isComposing)return;const isSummaryFocused=event.target instanceof Element&&event.target.tagName==='SUMMARY';switch(event.key){case'Escape':if(details.hasAttribute('open')){close(details);event.preventDefault();event.stopPropagation();}break;case'ArrowDown':{if(isSummaryFocused&&!details.hasAttribute('open')){details.setAttribute('open','');}const target=sibling(details,true);if(target)target.focus();event.preventDefault();}break;case'ArrowUp':{if(isSummaryFocused&&!details.hasAttribute('open')){details.setAttribute('open','');}const target=sibling(details,false);if(target)target.focus();event.preventDefault();}break;case'n':{if(ctrlBindings&&event.ctrlKey){const target=sibling(details,true);if(target)target.focus();event.preventDefault();}}break;case'p':{if(ctrlBindings&&event.ctrlKey){const target=sibling(details,false);if(target)target.focus();event.preventDefault();}}break;case' ':case'Enter':{const selected=document.activeElement;if(selected instanceof HTMLElement&&isMenuItem(selected)&&selected.closest('details')===details){event.preventDefault();event.stopPropagation();selected.click();}}break;}}function isMenuItem(el){const role=el.getAttribute('role');return role==='menuitem'||role==='menuitemcheckbox'||role==='menuitemradio';}function close(details){const wasOpen=details.hasAttribute('open');if(!wasOpen)return;details.removeAttribute('open');const summary=details.querySelector('summary');if(summary)summary.focus();}function updateLabel(item,details){const button=details.querySelector('[data-menu-button]');if(!button)return;const text=labelText(item);if(text){button.textContent=text;}else {const html=labelHTML(item);if(html)button.innerHTML=html;}}function labelText(el){if(!el)return null;const textEl=el.hasAttribute('data-menu-button-text')?el:el.querySelector('[data-menu-button-text]');if(!textEl)return null;return textEl.getAttribute('data-menu-button-text')||textEl.textContent;}function labelHTML(el){if(!el)return null;const contentsEl=el.hasAttribute('data-menu-button-contents')?el:el.querySelector('[data-menu-button-contents]');return contentsEl?contentsEl.innerHTML:null;}function trackComposition(menu,event){const state=states.get(menu);if(!state)return;state.isComposing=event.type==='compositionstart';}if(!window.customElements.get('details-menu')){window.DetailsMenuElement=DetailsMenuElement;window.customElements.define('details-menu',DetailsMenuElement);}
+
+let _$2=t=>t,_t$2;const navigationMenu=html(_t$2||(_t$2=_$2`
+  <router-link class="route route-primary" routeName="home">
+    ${0}
+  </router-link>
+  <router-link class="route route-primary" routeName="schedule">
+    ${0}
+  </router-link>
+`),translate("views.welcome.index.short_link"),translate("views.schedule.index.short_link"));// <details style="cursor:default;">
+//   <summary>${translate("views.schedule.index.short_link")}</summary>
+//   <router-link class="route route-primary" routeName="schedule">
+//     ${translate("views.schedule.index.short_link")}
+//   </router-link>
+// </details>;
+
+let _$3=t=>t,_t$3,_t2,_t3;const sharedStyles=css(_t$3||(_t$3=_$3`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
+  }
+  .inner-host {
+    padding: 6px;
+    box-sizing: border-box;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+    gap: 1px;
+  }
+  .inner-host.no_sidebar {
+    grid-template-areas:
+      "header header"
+      "main main"
+      "footer footer";
+  }
+  .inner-host.no_sidebar .app-sidebar {
+    display: none;
+  }
+  .app-header {
+    grid-area: header;
+    align-items: center;
+    flex: 1 1 auto;
+    display: flex;
+    border-bottom: 1px ridge grey;
+    padding: 1px;
+  }
+  .app-sidebar {
+    grid-area: sidebar;
+    background: #aaa;
+    display: flex;
+    flex-direction: column;
+  }
+  .app-main {
+    grid-area: main;
+    overflow: auto;
+    padding: 2px;
+    /* border-left: 3px ridge grey; */
+  }
+  .app-footer {
+    grid-area: footer;
+    font-size: calc(12px + 0.5vmin);
+    text-align: center;
+    border-top: 3px ridge grey;
   }
   .menu-icon-container {
     box-sizing: border-box;
@@ -1159,6 +1235,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
   .route:hover {
     background-color: rgba(10, 15, 30, 0.2);
   }
+
 `));/**
  * Self-contained reactive grid layout with css driven sidbar toggling.
  * I intend to make each section fully customizable.
@@ -1166,57 +1243,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
  * @extends HTMLElement
  * @demo https://samuelfrost.github.io/portfolio/
  *
- */class PortfolioApplication extends LitElement{static get properties(){return {title:{type:String},page:{type:String},sidebar_closed:{type:Boolean},main_content:{type:TemplateResult}};}constructor(){super();this.sidebar_closed=true;this.main_content=html(_t2||(_t2=_$1`<slot></slot>`));this.classes={no_sidebar:this.sidebar_closed};this.outlet=this;router.setOutlet(this.outlet);}static get styles(){return [headerStyles,css(_t3||(_t3=_$1`
-        .inner-host {
-          padding: 6px;
-          box-sizing: border-box;
-          display: grid;
-          height: 100%;
-          width: 100%;
-          grid-template-columns: 1fr 4fr;
-          grid-template-rows: min-content 1fr min-content;
-          grid-template-areas:
-            "header header"
-            "sidebar main"
-            "footer footer";
-          gap: 1px;
-        }
-        .inner-host.no_sidebar {
-          grid-template-areas:
-            "header header"
-            "main main"
-            "footer footer";
-        }
-        .inner-host.no_sidebar .app-sidebar {
-          display: none;
-        }
-        .app-header {
-          grid-area: header;
-          align-items: center;
-          flex: 1 1 auto;
-          display: flex;
-          border-bottom: 1px ridge grey;
-          padding: 1px;
-        }
-        .app-sidebar {
-          grid-area: sidebar;
-          background: #aaa;
-          display: flex;
-          flex-direction: column;
-        }
-        .app-main {
-          grid-area: main;
-          overflow: auto;
-          padding: 2px;
-          /* border-left: 3px ridge grey; */
-        }
-        .app-footer {
-          grid-area: footer;
-          font-size: calc(12px + 0.5vmin);
-          text-align: center;
-          border-top: 3px ridge grey;
-        }
-      `))];}render(){return html(_t4||(_t4=_$1`
+ */class PortfolioApplication extends LitElement{static get properties(){return {title:{type:String},page:{type:String},sidebar_closed:{type:Boolean},main_content:{type:TemplateResult}};}constructor(){super();this.sidebar_closed=true;this.main_content=html(_t2||(_t2=_$3`<slot></slot>`));this.classes={no_sidebar:this.sidebar_closed};this.outlet=this;router.setOutlet(this.outlet);}static get styles(){return [sharedStyles];}render(){return html(_t3||(_t3=_$3`
       <div class="inner-host ${0}">
         <div class="app-header">
           <div class="menu-icon-container">
@@ -1233,14 +1260,7 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
           <div style="flex:1 1 auto; display:flex;"></div>
           <settings-drop-down-button></settings-drop-down-button>
         </div>
-        <div class="app-sidebar">
-          <a href="./" class="route route-primary">
-            <div>${0}</div>
-          </a>
-          <a href="./schedule" class="route route-primary">
-            <div>${0}</div>
-          </a>
-        </div>
+        <div class="app-sidebar">${0}</div>
         <main class="app-main">${0}</main>
         <div class="app-footer">
           Developed by Samuel Frost
@@ -1249,13 +1269,13 @@ let _$1=t=>t,_t$1,_t2,_t3,_t4;const headerStyles=css(_t$1||(_t$1=_$1`
           >&nbsp;<a href="https://github.com/SamuelFrost">Github</a>
         </div>
       </div>
-    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,translate("views.welcome.index.short_link"),translate("views.schedule.index.short_link"),this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();/*
+    `),classMap(this.classes),this._toggle_sidebar,sidebarCollapseButton,navigationMenu,this.main_content);}_main_content(){return this.shadowRoot.querySelector(".app-main");}_toggle_sidebar(){this.sidebar_closed=!this.sidebar_closed;this.classes.no_sidebar=this.sidebar_closed;}_toggle_language(){use("en-pirate");}}localeConfig.initialize();/*
 // Redirect path is currently being set when the 404 page is visited.
 // Ideally the server would set this if necessary, but the current web host - github pages - doesn't have much server customizability in this respect.
 // This should only occur when a user is accessing a specific page via a url and using the app for the first time, otherwise the service worker should intercept the request
 */if(sessionStorage.getItem("redirect_pathname")!=null){router.render({pathname:sessionStorage.getItem("redirect_pathname")},true);sessionStorage.removeItem("redirect_pathname","");}
 
-let _$2=t=>t,_t$2;const settingsButtonImage=html(_t$2||(_t$2=_$2`
+let _$4=t=>t,_t$4;const settingsButtonImage=html(_t$4||(_t$4=_$4`
   <?xml version="1.1" ?><svg
     style="width:100%; height:auto;"
     focusable="false"
@@ -1267,13 +1287,11 @@ let _$2=t=>t,_t$2;const settingsButtonImage=html(_t$2||(_t$2=_$2`
   </svg>
 `));
 
-class DetailsMenuElement extends HTMLElement{constructor(){super();}get preload(){return this.hasAttribute('preload');}set preload(value){if(value){this.setAttribute('preload','');}else {this.removeAttribute('preload');}}get src(){return this.getAttribute('src')||'';}set src(value){this.setAttribute('src',value);}connectedCallback(){if(!this.hasAttribute('role'))this.setAttribute('role','menu');const details=this.parentElement;if(!details)return;const summary=details.querySelector('summary');if(summary){summary.setAttribute('aria-haspopup','menu');if(!summary.hasAttribute('role'))summary.setAttribute('role','button');}const subscriptions=[fromEvent(details,'compositionstart',e=>trackComposition(this,e)),fromEvent(details,'compositionend',e=>trackComposition(this,e)),fromEvent(details,'click',e=>shouldCommit(details,this,e)),fromEvent(details,'change',e=>shouldCommit(details,this,e)),fromEvent(details,'keydown',e=>keydown(details,this,e)),fromEvent(details,'toggle',()=>loadFragment(details,this),{once:true}),fromEvent(details,'toggle',()=>closeCurrentMenu(details)),this.preload?fromEvent(details,'mouseover',()=>loadFragment(details,this),{once:true}):NullSubscription,...focusOnOpen(details)];states.set(this,{subscriptions,loaded:false,isComposing:false});}disconnectedCallback(){const state=states.get(this);if(!state)return;states.delete(this);for(const sub of state.subscriptions){sub.unsubscribe();}}}const states=new WeakMap();const NullSubscription={unsubscribe(){}};function fromEvent(target,eventName,onNext,options=false){target.addEventListener(eventName,onNext,options);return {unsubscribe:()=>{target.removeEventListener(eventName,onNext,options);}};}function loadFragment(details,menu){const src=menu.getAttribute('src');if(!src)return;const state=states.get(menu);if(!state)return;if(state.loaded)return;state.loaded=true;const loader=menu.querySelector('include-fragment');if(loader&&!loader.hasAttribute('src')){loader.addEventListener('loadend',()=>autofocus(details));loader.setAttribute('src',src);}}function focusOnOpen(details){let isMouse=false;const onmousedown=()=>isMouse=true;const onkeydown=()=>isMouse=false;const ontoggle=()=>{if(!details.hasAttribute('open'))return;if(autofocus(details))return;if(!isMouse)focusFirstItem(details);};return [fromEvent(details,'mousedown',onmousedown),fromEvent(details,'keydown',onkeydown),fromEvent(details,'toggle',ontoggle)];}function closeCurrentMenu(details){if(!details.hasAttribute('open'))return;for(const menu of document.querySelectorAll('details[open] > details-menu')){const opened=menu.closest('details');if(opened&&opened!==details&&!opened.contains(details)){opened.removeAttribute('open');}}}function autofocus(details){if(!details.hasAttribute('open'))return false;const input=details.querySelector('[autofocus]');if(input){input.focus();return true;}else {return false;}}function focusFirstItem(details){const selected=document.activeElement;if(selected&&isMenuItem(selected)&&details.contains(selected))return;const target=sibling(details,true);if(target)target.focus();}function sibling(details,next){const options=Array.from(details.querySelectorAll('[role^="menuitem"]:not([hidden]):not([disabled]):not([aria-disabled="true"])'));const selected=document.activeElement;const index=selected instanceof HTMLElement?options.indexOf(selected):-1;const found=next?options[index+1]:options[index-1];const def=next?options[0]:options[options.length-1];return found||def;}const ctrlBindings=navigator.userAgent.match(/Macintosh/);function shouldCommit(details,menu,event){const target=event.target;if(!(target instanceof Element))return;if(target.closest('details')!==details)return;if(event.type==='click'){const menuitem=target.closest('[role="menuitem"], [role="menuitemradio"]');const onlyCommitOnChangeEvent=menuitem&&menuitem.tagName==='LABEL'&&menuitem.querySelector('input');if(menuitem&&!onlyCommitOnChangeEvent){commit(menuitem,details);}}else if(event.type==='change'){const menuitem=target.closest('[role="menuitemradio"], [role="menuitemcheckbox"]');if(menuitem)commit(menuitem,details);}}function updateChecked(selected,details){for(const el of details.querySelectorAll('[role="menuitemradio"], [role="menuitemcheckbox"]')){const input=el.querySelector('input[type="radio"], input[type="checkbox"]');let checkState=(el===selected).toString();if(input instanceof HTMLInputElement){checkState=input.indeterminate?'mixed':input.checked.toString();}el.setAttribute('aria-checked',checkState);}}function commit(selected,details){if(selected.hasAttribute('disabled')||selected.getAttribute('aria-disabled')==='true')return;const menu=selected.closest('details-menu');if(!menu)return;const dispatched=menu.dispatchEvent(new CustomEvent('details-menu-select',{cancelable:true,detail:{relatedTarget:selected}}));if(!dispatched)return;updateLabel(selected,details);updateChecked(selected,details);if(selected.getAttribute('role')!=='menuitemcheckbox')close(details);menu.dispatchEvent(new CustomEvent('details-menu-selected',{detail:{relatedTarget:selected}}));}function keydown(details,menu,event){if(!(event instanceof KeyboardEvent))return;if(details.querySelector('details[open]'))return;const state=states.get(menu);if(!state||state.isComposing)return;const isSummaryFocused=event.target instanceof Element&&event.target.tagName==='SUMMARY';switch(event.key){case'Escape':if(details.hasAttribute('open')){close(details);event.preventDefault();event.stopPropagation();}break;case'ArrowDown':{if(isSummaryFocused&&!details.hasAttribute('open')){details.setAttribute('open','');}const target=sibling(details,true);if(target)target.focus();event.preventDefault();}break;case'ArrowUp':{if(isSummaryFocused&&!details.hasAttribute('open')){details.setAttribute('open','');}const target=sibling(details,false);if(target)target.focus();event.preventDefault();}break;case'n':{if(ctrlBindings&&event.ctrlKey){const target=sibling(details,true);if(target)target.focus();event.preventDefault();}}break;case'p':{if(ctrlBindings&&event.ctrlKey){const target=sibling(details,false);if(target)target.focus();event.preventDefault();}}break;case' ':case'Enter':{const selected=document.activeElement;if(selected instanceof HTMLElement&&isMenuItem(selected)&&selected.closest('details')===details){event.preventDefault();event.stopPropagation();selected.click();}}break;}}function isMenuItem(el){const role=el.getAttribute('role');return role==='menuitem'||role==='menuitemcheckbox'||role==='menuitemradio';}function close(details){const wasOpen=details.hasAttribute('open');if(!wasOpen)return;details.removeAttribute('open');const summary=details.querySelector('summary');if(summary)summary.focus();}function updateLabel(item,details){const button=details.querySelector('[data-menu-button]');if(!button)return;const text=labelText(item);if(text){button.textContent=text;}else {const html=labelHTML(item);if(html)button.innerHTML=html;}}function labelText(el){if(!el)return null;const textEl=el.hasAttribute('data-menu-button-text')?el:el.querySelector('[data-menu-button-text]');if(!textEl)return null;return textEl.getAttribute('data-menu-button-text')||textEl.textContent;}function labelHTML(el){if(!el)return null;const contentsEl=el.hasAttribute('data-menu-button-contents')?el:el.querySelector('[data-menu-button-contents]');return contentsEl?contentsEl.innerHTML:null;}function trackComposition(menu,event){const state=states.get(menu);if(!state)return;state.isComposing=event.type==='compositionstart';}if(!window.customElements.get('details-menu')){window.DetailsMenuElement=DetailsMenuElement;window.customElements.define('details-menu',DetailsMenuElement);}
-
-let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$3`
+let _$5=t=>t,_t$5,_t2$1,_t3$1,_t4,_t5;const settingsButton=html(_t$5||(_t$5=_$5`
   <button class="menu-icon" tabindex="0" aria-label="Settings" roll="button">
     ${0}
   </button>
-`),settingsButtonImage);const languageMenu=html(_t2$1||(_t2$1=_$3`
+`),settingsButtonImage);const languageMenu=html(_t2$1||(_t2$1=_$5`
   <details
     role="menu"
     style="cursor:default;border:1px black solid;bord-radius:1px;background:#fff;"
@@ -1308,14 +1326,14 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
       </button>
     </details-menu>
   </details>
-`),()=>{use("en-us");},()=>{use("en-pirate");},()=>{use("ja-jp");});const settingsDetailsMenu=html(_t3$1||(_t3$1=_$3`
+`),()=>{use("en-us");},()=>{use("en-pirate");},()=>{use("ja-jp");});const settingsDetailsMenu=html(_t3$1||(_t3$1=_$5`
   <details-menu role="menu" class="dropdown-menu">
     ${0}
     <button type="button" role="menuitem">
       ${0} (${0})
     </button>
   </details-menu>
-`),languageMenu,translate("settings.display_preferences"),translate("common.in_progress"));class SettingsDropDownButton extends LitElement{static get styles(){return [headerStyles,css(_t4$1||(_t4$1=_$3`
+`),languageMenu,translate("settings.display_preferences"),translate("common.in_progress"));class SettingsDropDownButton extends LitElement{static get styles(){return [sharedStyles,css(_t4||(_t4=_$5`
         :host {
           --color-bg-overlay: #aaa;
           --color-border-overlay: #aaa;
@@ -1350,9 +1368,9 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
 
           display: flex;
           flex-direction: column;
-          width: clamp(10ch, 40ch, 50vw)
+          width: clamp(10ch, 40ch, 50vw);
         }
-      `))];}render(){return html(_t5||(_t5=_$3`
+      `))];}render(){return html(_t5||(_t5=_$5`
       <details class="menu-icon-container details-reset">
         <summary
           class="menu-icon"
@@ -1366,4 +1384,4 @@ let _$3=t=>t,_t$3,_t2$1,_t3$1,_t4$1,_t5;const settingsButton=html(_t$3||(_t$3=_$
       </details>
     `),settingsButtonImage,settingsDetailsMenu);}}
 
-customElements.define("settings-drop-down-button",SettingsDropDownButton);customElements.define('portfolio-application',PortfolioApplication);
+customElements.define('portfolio-application',PortfolioApplication);customElements.define("settings-drop-down-button",SettingsDropDownButton);customElements.define("router-link",RouterLink);
