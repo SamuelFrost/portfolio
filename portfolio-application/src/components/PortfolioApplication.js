@@ -2,13 +2,63 @@ import { LitElement, html, css, TemplateResult } from "lit-element";
 import { sidebarCollapseButton } from "./sidebar-collapse-button.js";
 import { classMap } from "lit-html/directives/class-map";
 import { router } from "/src/router.js";
-import { use, translate } from "lit-translate";
+import { use } from "lit-translate";
 import { localeConfig } from "/src/locale.js";
+import { navigationMenu } from "/src/components/navigation.js";
 
-export const headerStyles = css`
+export const sharedStyles = css`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
+  }
+  .inner-host {
+    padding: 6px;
+    box-sizing: border-box;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+    gap: 1px;
+  }
+  .inner-host.no_sidebar {
+    grid-template-areas:
+      "header header"
+      "main main"
+      "footer footer";
+  }
+  .inner-host.no_sidebar .app-sidebar {
+    display: none;
+  }
+  .app-header {
+    grid-area: header;
+    align-items: center;
+    flex: 1 1 auto;
+    display: flex;
+    border-bottom: 1px ridge grey;
+    padding: 1px;
+  }
+  .app-sidebar {
+    grid-area: sidebar;
+    background: #aaa;
+    display: flex;
+    flex-direction: column;
+  }
+  .app-main {
+    grid-area: main;
+    overflow: auto;
+    padding: 2px;
+    /* border-left: 3px ridge grey; */
+  }
+  .app-footer {
+    grid-area: footer;
+    font-size: calc(12px + 0.5vmin);
+    text-align: center;
+    border-top: 3px ridge grey;
   }
   .menu-icon-container {
     box-sizing: border-box;
@@ -53,6 +103,7 @@ export const headerStyles = css`
   .route:hover {
     background-color: rgba(10, 15, 30, 0.2);
   }
+
 `;
 
 /**
@@ -83,58 +134,7 @@ export class PortfolioApplication extends LitElement {
 
   static get styles() {
     return [
-      headerStyles,
-      css`
-        .inner-host {
-          padding: 6px;
-          box-sizing: border-box;
-          display: grid;
-          height: 100%;
-          width: 100%;
-          grid-template-columns: 1fr 4fr;
-          grid-template-rows: min-content 1fr min-content;
-          grid-template-areas:
-            "header header"
-            "sidebar main"
-            "footer footer";
-          gap: 1px;
-        }
-        .inner-host.no_sidebar {
-          grid-template-areas:
-            "header header"
-            "main main"
-            "footer footer";
-        }
-        .inner-host.no_sidebar .app-sidebar {
-          display: none;
-        }
-        .app-header {
-          grid-area: header;
-          align-items: center;
-          flex: 1 1 auto;
-          display: flex;
-          border-bottom: 1px ridge grey;
-          padding: 1px;
-        }
-        .app-sidebar {
-          grid-area: sidebar;
-          background: #aaa;
-          display: flex;
-          flex-direction: column;
-        }
-        .app-main {
-          grid-area: main;
-          overflow: auto;
-          padding: 2px;
-          /* border-left: 3px ridge grey; */
-        }
-        .app-footer {
-          grid-area: footer;
-          font-size: calc(12px + 0.5vmin);
-          text-align: center;
-          border-top: 3px ridge grey;
-        }
-      `,
+      sharedStyles
     ];
   }
 
@@ -156,14 +156,7 @@ export class PortfolioApplication extends LitElement {
           <div style="flex:1 1 auto; display:flex;"></div>
           <settings-drop-down-button></settings-drop-down-button>
         </div>
-        <div class="app-sidebar">
-          <a href="./" class="route route-primary">
-            <div>${translate("views.welcome.index.short_link")}</div>
-          </a>
-          <a href="./schedule" class="route route-primary">
-            <div>${translate("views.schedule.index.short_link")}</div>
-          </a>
-        </div>
+        <div class="app-sidebar">${navigationMenu}</div>
         <main class="app-main">${this.main_content}</main>
         <div class="app-footer">
           Developed by Samuel Frost

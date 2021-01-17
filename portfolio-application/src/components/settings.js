@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element'
 import { settingsButtonImage } from './settings-button-image.js'
-import { headerStyles } from './PortfolioApplication.js'
+import { sharedStyles } from "./PortfolioApplication.js";
 import { use, translate } from "lit-translate";
 import "@github/details-menu-element"
 
@@ -64,7 +64,7 @@ export const settingsDetailsMenu = html`
 export class SettingsDropDownButton extends LitElement {
   static get styles() {
     return [
-      headerStyles,
+      sharedStyles,
       css`
         :host {
           --color-bg-overlay: #aaa;
@@ -100,7 +100,7 @@ export class SettingsDropDownButton extends LitElement {
 
           display: flex;
           flex-direction: column;
-          width: clamp(10ch, 40ch, 50vw)
+          width: clamp(10ch, 40ch, 50vw);
         }
       `,
     ];
