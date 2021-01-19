@@ -21,6 +21,14 @@ router.setRoutes([
     },
   },
   {
+    name: "resume",
+    path: "/resume",
+    component: "view-resume-index",
+    action: async () => {
+      await import("/src/views/resume/index.js");
+    },
+  },
+  {
     path: "(.*)",
     component: "view-standard-error_404",
     action: async () => {

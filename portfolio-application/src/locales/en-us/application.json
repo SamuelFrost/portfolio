@@ -26,6 +26,12 @@
         "short_title": "Schedule",
         "long_title": "Samuel's availability for meetings and such"
       }
+    },
+    "resume": {
+      "index": {
+        "short_link": "Resume",
+        "resource_url": "https://storage.googleapis.com/portfolio-media/Samuel%20Frost%20Resume.pdf"
+      }
     }
   }
 }

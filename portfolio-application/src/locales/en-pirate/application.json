@@ -26,6 +26,12 @@
         "short_title": "My calendarrrr",
         "long_title": "Times to be reachin' out to me for meetings and stuff"
       }
+    },
+    "resume": {
+      "index": {
+        "short_link": "Resume",
+        "resource_url": "https://storage.googleapis.com/portfolio-media/Samuel%20Frost%20Resume.pdf"
+      }
     }
   }
 }
