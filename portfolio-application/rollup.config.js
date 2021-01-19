@@ -1,5 +1,4 @@
 import merge from 'deepmerge';
-// use createSpaConfig for bundling a Single Page App
 import { createSpaConfig } from '@open-wc/building-rollup';
 import copy from 'rollup-plugin-copy'
 import json from '@rollup/plugin-json';
@@ -18,8 +17,7 @@ let config = createSpaConfig({
   // legacyBuild: true,
 
   // development mode creates a non-minified build for debugging or development
-  // developmentMode: process.env.ROLLUP_WATCH === 'true',
-  developmentMode: true,
+  developmentMode: (['development'].includes(process.env.ENVIRONMENT)),
   // set to true to inject the service worker registration into your index.html
   injectServiceWorker: false,
   // workbox: {
