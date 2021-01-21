@@ -171,10 +171,6 @@ export class PortfolioApplication extends LitElement {
     this.sidebar_closed = !this.sidebar_closed;
     this.classes.no_sidebar = this.sidebar_closed;
   }
-
-  _toggle_language() {
-    use("en-pirate");
-  }
 }
 localeConfig.initialize();
 
