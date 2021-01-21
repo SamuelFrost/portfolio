@@ -32,6 +32,15 @@
         "short_link": "Resume",
         "resource_url": "https://storage.googleapis.com/portfolio-media/Samuel%20Frost%20Resume.pdf"
       }
+    },
+    "projects": {
+      "models": {
+        "3d_models_index": {
+          "short_link": "\"Three-di\" models",
+          "object_title_balcony": "This be my home's upper deck, me wifey wanted to know if the red thingy she was looking at on amazon would fit.",
+          "object_title_house": "Arr, this be me ship.. err... house I made! Be leavin' the tree spots and land elevation stuff off, but she be pretty detailed still"
+        }
+      }
     }
   }
 }

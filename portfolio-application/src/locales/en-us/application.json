@@ -32,6 +32,15 @@
         "short_link": "Resume",
         "resource_url": "https://storage.googleapis.com/portfolio-media/Samuel%20Frost%20Resume.pdf"
       }
+    },
+    "projects": {
+      "models": {
+        "3d_models_index": {
+          "short_link": "3d models",
+          "object_title_balcony": "A quick sketchup of my apartment's balcony for planning furniture/storage (white objects already present, red being considered)",
+          "object_title_house": "A detailed to scale model of my real estate project - some planning layers have been left out"
+        }
+      }
     }
   }
 }

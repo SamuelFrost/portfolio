@@ -32,6 +32,15 @@
         "short_link": "職務経歴書",
         "resource_url": "https://storage.googleapis.com/portfolio-media/Samuel%20Frost_%E5%B1%A5%E6%AD%B4%E6%9B%B8%E3%83%BB%E8%81%B7%E5%8B%99%E7%B5%8C%E6%AD%B4%E6%9B%B8.pdf"
       }
+    },
+    "projects": {
+      "models": {
+        "3d_models_index": {
+          "short_link": "3d モデル",
+          "object_title_balcony": "アパートのベランダ、アマゾンで見ていた家具(赤)が入れるかどうかを考慮するためでしたので10分もかからないで作った簡単なモデルです。",
+          "object_title_house": "アメリカで作っていた家の計画案のためのモデルです。実際使っていたモデルは木などのレイヤーがあってもっと細かい情報がありますが、ぐちゃぐちゃにならないために非表示の状態です。"
+        }
+      }
     }
   }
 }

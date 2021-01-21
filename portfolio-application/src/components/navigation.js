@@ -12,6 +12,9 @@ export const navigationMenu = html`
   <router-link class="route route-primary" routeName="resume">
     ${translate("views.resume.index.short_link")}
   </router-link>
+  <router-link class="route route-primary" routeName="3d_models">
+    ${translate("views.projects.models.3d_models_index.short_link")}
+  </router-link>
 `;
 
   // <details style="cursor:default;">

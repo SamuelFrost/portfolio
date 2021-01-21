@@ -29,12 +29,20 @@ router.setRoutes([
     },
   },
   {
+    name: "3d_models",
+    path: "/3d_models",
+    component: "view-model-index",
+    action: async () => {
+      await import("/src/views/projects/models/3d_models_index.js");
+    },
+  },
+  {
     path: "(.*)",
     component: "view-standard-error_404",
     action: async () => {
       await import("/src/views/standard/error_404.js");
     },
-  },
+  }
 ]);
 
 /**
