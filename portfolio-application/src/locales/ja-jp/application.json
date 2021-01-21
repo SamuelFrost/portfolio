@@ -1,7 +1,7 @@
 {
   "common": {
     "some_page": "存在しないページ",
-    "in_progress": "未完成",
+    "in_progress": "開発進行中",
     "short_language": "ja",
     "short_locale": "ja-jp"
   },
