@@ -167,9 +167,6 @@ export class PortfolioApplication extends LitElement {
       </div>
     `;
   }
-  _main_content() {
-    return this.shadowRoot.querySelector(".app-main");
-  }
   _toggle_sidebar() {
     this.sidebar_closed = !this.sidebar_closed;
     this.classes.no_sidebar = this.sidebar_closed;
