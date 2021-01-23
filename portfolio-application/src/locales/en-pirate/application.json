@@ -37,8 +37,12 @@
       "models": {
         "3d_models_index": {
           "short_link": "\"Three-di\" models",
-          "object_title_balcony": "This be my home's upper deck, me wifey wanted to know if the red thingy she was looking at on amazon would fit.",
-          "object_title_house": "Arr, this be me ship.. err... house I made! Be leavin' the tree spots and land elevation stuff off, but she be pretty detailed still"
+          "object_description_microRoom": "Tiny rooms! They be fittin' in the little one story buildings well.",
+          "object_description_balcony": "This be my home's upper deck, me wifey wanted to know if the red thingy she was looking at on amazon would fit.",
+          "object_description_house": "Arr, this be me ship.. err... house I made! Be leavin' the tree spots and land elevation stuff off, but she be pretty detailed still",
+          "object_name_microRoom": "Micro Room",
+          "object_name_house": "House / Real Estate",
+          "object_name_balcony": "Balcony"
         }
       }
     }
