@@ -11,6 +11,7 @@ export const sharedStyles = css`
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
   }
+  
   .inner-host {
     padding: 6px;
     box-sizing: border-box;

@@ -17,7 +17,8 @@
     "welcome": {
       "index": {
         "short_link": "Home",
-        "welcome": "Welcome to me app matey!"
+        "welcome": "Welcome to me app matey!",
+        "in_progress_statement": "This'ere portfolio be a work in progress, so if ya be lookin' around as a tech-savvy person, take a look at the code for the real interestin' stuff."
       }
     },
     "schedule": {

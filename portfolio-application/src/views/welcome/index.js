@@ -4,8 +4,13 @@ import { localeConfig } from '/src/locale.js';
 export class ViewWelcomeIndex extends LitElement {
   render() {
     return html`
-      <h1>${translate("views.welcome.index.welcome")}</h1>
-    `
+      <div>
+        <h2>${translate("views.welcome.index.welcome")}</h2>
+        <p>
+          ${translate("views.welcome.index.in_progress_statement")}
+        </p>
+      </div>
+    `;
   }
 }
 customElements.define('view-welcome-index', ViewWelcomeIndex)
