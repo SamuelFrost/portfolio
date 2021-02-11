@@ -4,8 +4,8 @@ import { localeConfig } from '/src/locale.js';
 export class ViewProjectsPortfolioIndex extends LitElement {
   render() {
     return html`
-      <div style="padding:10%;padding-top:0;">
-      <h1>${translate("views.projects.portfolio.index.title")}</h1>
+      <div style="box-sizing:border-box;width:max(60ch,100%);padding:10%;padding-top:0;">
+        <h1>${translate("views.projects.portfolio.index.title")}</h1>
         <h2>${translate("views.projects.portfolio.index.why_worth_mentioning")}</h2>
         <p>${translateUnsafeHTML("views.projects.portfolio.index.no_framework_native_apis")}</p>
         <p>${translateUnsafeHTML("views.projects.portfolio.index.no_framework_benefits")}</p>
