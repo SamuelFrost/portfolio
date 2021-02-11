@@ -7,6 +7,10 @@ export class ViewWelcomeIndex extends LitElement {
       <div>
         <h2>${translate("views.welcome.index.welcome")}</h2>
         <p>${translate("views.welcome.index.in_progress_statement")}</p>
+        <a
+          href="https://github.com/SamuelFrost/portfolio/tree/main/portfolio-application"
+          >https://github.com/SamuelFrost/portfolio/tree/main/portfolio-application</a
+        >
       </div>
     `;
   }
