@@ -18,7 +18,7 @@ export const sharedStyles = css`
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: fit-content(50%) 1fr;
     grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
       "header header"
@@ -48,6 +48,8 @@ export const sharedStyles = css`
     background: #aaa;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    word-break: break-word;
   }
   .app-main {
     grid-area: main;
@@ -57,7 +59,7 @@ export const sharedStyles = css`
   }
   .app-footer {
     grid-area: footer;
-    font-size: calc(12px + 0.5vmin);
+    font-size: min(calc(1rem + 0.5vmin), 5vmin);
     text-align: center;
     border-top: 3px ridge grey;
   }
