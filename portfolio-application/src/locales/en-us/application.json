@@ -18,7 +18,7 @@
       "index": {
         "short_link": "Home",
         "welcome": "Welcome to my portfolio!",
-        "in_progress_statement": "I'm still working on some features and content on my portfolio, so while it would be a good idea for an engineer to look at the code base to get a good idea of my front end and general web development skills, it doesn't yet have a lot of content highlighting my achievements and capabilities."
+        "in_progress_statement": "I'm still working on some features and content on my portfolio, so while it would be a good idea for an engineer to look at the code base to see some interesting new front end development patterns I'm using, it doesn't yet have a lot of content highlighting my achievements and capabilities."
       }
     },
     "schedule": {
