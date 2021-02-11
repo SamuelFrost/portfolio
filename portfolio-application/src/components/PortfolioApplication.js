@@ -126,7 +126,7 @@ export class PortfolioApplication extends LitElement {
   }
   constructor() {
     super();
-    this.sidebar_closed = true;
+    this.sidebar_closed = false;
     this.main_content = html`<slot></slot>`;
     this.classes = { no_sidebar: this.sidebar_closed };
     this.outlet = this;

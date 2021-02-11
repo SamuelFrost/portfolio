@@ -6,11 +6,16 @@ export class ViewWelcomeIndex extends LitElement {
     return html`
       <div>
         <h2>${translate("views.welcome.index.welcome")}</h2>
-        <p>
-          ${translate("views.welcome.index.in_progress_statement")}
-        </p>
+        <p>${translate("views.welcome.index.in_progress_statement")}</p>
       </div>
     `;
+  }
+  createRenderRoot() {
+    /**
+     * Render template without shadow DOM. Note that shadow DOM features like
+     * encapsulated CSS and slots are unavailable.
+     */
+    return this;
   }
 }
 customElements.define('view-welcome-index', ViewWelcomeIndex)

@@ -37,12 +37,20 @@ router.setRoutes([
     },
   },
   {
+    name: "about_portfolio",
+    path: "/about_portfolio",
+    component: "view-projects-portfolio-index",
+    action: async () => {
+      await import("/src/views/projects/portfolio/index.js");
+    },
+  },
+  {
     path: "(.*)",
     component: "view-standard-error_404",
     action: async () => {
       await import("/src/views/standard/error_404.js");
     },
-  }
+  },
 ]);
 
 /**
