@@ -10,6 +10,7 @@ export const sharedStyles = css`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
+    box-sizing: border-box;
   }
 
   .inner-host {
