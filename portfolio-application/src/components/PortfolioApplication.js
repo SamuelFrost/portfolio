@@ -11,7 +11,7 @@ export const sharedStyles = css`
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
   }
-  
+
   .inner-host {
     padding: 6px;
     box-sizing: border-box;
@@ -69,7 +69,7 @@ export const sharedStyles = css`
   }
   .menu-icon {
     display: flex;
-    padding: 0.5rem;
+    padding: min(0.5rem, 1vw);
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -82,7 +82,8 @@ export const sharedStyles = css`
     appearance: none;
     background: #ccc;
     box-sizing: border-box;
-    width: calc(1.5rem + 2px + 1rem);
+    width: min(calc(1.5rem + 2px + min(1rem, 2vw)), 10vw);
+    /* The sizes (1.5rem, 2px, min(1rem, 2vw)) come from a sensible base icon size, padding, border-width respectively. */
   }
   .menu-icon:focus {
     border-color: black;
@@ -104,7 +105,6 @@ export const sharedStyles = css`
   .route:hover {
     background-color: rgba(10, 15, 30, 0.2);
   }
-
 `;
 
 /**
