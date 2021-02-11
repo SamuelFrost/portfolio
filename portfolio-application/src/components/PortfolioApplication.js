@@ -104,6 +104,8 @@ export const sharedStyles = css`
   }
   .route {
     background-color: rgba(220, 220, 220, 0.3);
+    padding-left: 3px;
+    padding-right: 3px;
   }
   .route:hover {
     background-color: rgba(10, 15, 30, 0.2);
