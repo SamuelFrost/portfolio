@@ -1,3 +1,6 @@
+## Live site:
+https://samuelfrost.github.io/portfolio/
+
 ## Quick start
 To get started using a command line interface:
 
