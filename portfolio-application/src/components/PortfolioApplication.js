@@ -33,6 +33,24 @@ export const sharedStyles = css`
       "main main"
       "footer footer";
   }
+  @media (max-width: 504px) {
+    .inner-host {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content min-content 1fr min-content;
+      grid-template-areas:
+        "header header"
+        "sidebar sidebar"
+        "main main"
+        "footer footer";
+    }
+    .inner-host.no_sidebar {
+      grid-template-areas:
+        "header header"
+        "main main"
+        "main main"
+        "footer footer";
+    }
+  }
   .inner-host.no_sidebar .app-sidebar {
     display: none;
   }
