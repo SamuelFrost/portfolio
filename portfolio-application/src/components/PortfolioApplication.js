@@ -19,7 +19,7 @@ export const sharedStyles = css`
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-columns: fit-content(50%) 1fr;
+    grid-template-columns: max(min(160px, 50%), 20%) 1fr;
     grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
       "header header"
