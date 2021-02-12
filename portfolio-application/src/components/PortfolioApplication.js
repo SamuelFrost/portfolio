@@ -14,7 +14,7 @@ export const sharedStyles = css`
   }
 
   .inner-host {
-    padding: 6px;
+    padding: min(4px, 1vmin);
     box-sizing: border-box;
     display: grid;
     height: 100%;
@@ -90,7 +90,7 @@ export const sharedStyles = css`
   }
   .menu-icon {
     display: flex;
-    padding: min(0.5rem, 1vw);
+    padding: min(6px, 1vw);
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -103,8 +103,14 @@ export const sharedStyles = css`
     appearance: none;
     background: #ccc;
     box-sizing: border-box;
-    width: min(calc(1.5rem + 2px + min(1rem, 2vw)), 10vw);
-    /* The sizes (1.5rem, 2px, min(1rem, 2vw)) come from a sensible base icon size, padding, border-width respectively. */
+    width: min(
+      calc(24px + 2px + min(12px, 2vw)),
+      calc(min(24px, 15vw) + 10vmin)
+    );
+    /* 
+      The sizes (24px, 2px, min(12px, 2vw)) come from base icon size, padding, border-width respectively and give a good standard size.
+      calc(min(24px, 15vw) + 10vmin gives a floor for super small screens while giving way to the the standard size when it's very large.
+    */
   }
   .menu-icon:focus {
     border-color: black;
