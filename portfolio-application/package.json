@@ -2,7 +2,8 @@
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.js --environment OUTPUTDIR:dist,ENVIRONMENT:production",
     "build:gh-pages": "rimraf gh-pages && rollup -c rollup.config.js --environment OUTPUTDIR:gh-pages,BASEDIR:portfolio/,ENVIRONMENT:production",
-    "start:build": "npm run build && web-dev-server --root-dir ./dist --node-resolve --compatibility none",
+    "start:build": "npm run build && npm run start:dist",
+    "start:dist": "web-dev-server --root-dir ./dist --node-resolve --compatibility none",
     "start": "web-dev-server --app-index local_index.html --node-resolve --watch",
     "gsp:gh-pages": "cd .. ; git add portfolio-application/gh-pages -f ; git commit -m'update gh-pages' ; git subtree push --prefix portfolio-application/gh-pages origin gh-pages",
     "gsp:gh-pages:force": "git push origin `git subtree split --prefix portfolio-application/gh-pages gh-pages`:gh-pages --force"
@@ -20,7 +21,7 @@
     "rollup-plugin-copy": "^3.3.0"
   },
   "name": "portfolio-application",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Webcomponent portfolio-application following open-wc recommendations",
   "author": "portfolio-application",
   "license": "MIT",
