@@ -1,0 +1,9 @@
+version: "3"
+services:
+  node-spa:
+    # working_dir: /app
+    ports:
+      - 8001:8001 # expose extra port for testing builds
+    environment:
+      - NODE_ENV=development
+    command: "npm run start"

@@ -1,0 +1,15 @@
+version: "3"
+services:
+  node-spa:
+    build:
+      context: "./portfolio-application"
+      dockerfile: dockerfile
+    user: "root"
+    working_dir: /app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./portfolio-application:/app
+    ports:
+      - 8000:8000
+    command: "npm run start:dist"
