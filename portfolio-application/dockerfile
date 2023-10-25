@@ -6,15 +6,16 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
+# Install npm dependencies, including non-production for build process
+RUN npm install --include dev
 
-# Install npm development dependencies
-# Install Git (for use when using github pages functionality)
-# Install Vim (for debugging)
-RUN if [ "$NODE_ENV" != "production" ]; then echo $NODE_ENV && npm install --production=false && apt-get update && apt-get install -y git && apt-get install -y vim ; fi
+# Install Vim - for debugging
+# Install Git - for convenience when deploying with github pages functionality (npm run gsp:gh-pages)
+RUN apt-get update && apt-get install -y git && apt-get install -y vim
 
+# build production ready static files in ./dist directory
 RUN npm run build
 
 EXPOSE 8000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "start:dist" ]

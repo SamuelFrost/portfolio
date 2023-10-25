@@ -4,12 +4,13 @@ services:
     build:
       context: "./portfolio-application"
       dockerfile: dockerfile
-    user: "root"
+    user: "node"
     working_dir: /app
     environment:
       - NODE_ENV=production
     volumes:
       - ./portfolio-application:/app
+      - /app/dist
     ports:
       - 8000:8000
     command: "npm run start:dist"
