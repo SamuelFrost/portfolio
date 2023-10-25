@@ -28,6 +28,9 @@ npm run start
 ### To run with with Docker
 Requires docker installed with a linux OS Kernel (for windows users, use [windows subsystem for linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install), mac and linux users should have no extra requirements beyond installing docker normally)
 
+*note: wsl users should place their project folder inside their linux distribution filepath for the development live file change listeners (--watch option) to work properly. The filepath should be something like: \\\\wsl.localhost\Debian\home\user\projects
+
+From the portfolio/ directory run
 ```
 docker-compose build
 docker-compose up
