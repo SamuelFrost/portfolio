@@ -68,7 +68,7 @@ export class SettingsDropDownButton extends LitElement {
       css`
         :host {
           --settings-dropdown-bg-color: var(--menu-bg-color, #aaa);
-          --settings-dropdown-border-color: red; //var(--menu-bg-color, #aaa)
+          --settings-dropdown-border-color: var(--menu-bg-color, #aaa)
           --settings-dropdown-shadow-color: var(--menu-bg-color, #aaa);
           --settings-dropdown-border-: 1px;
         }

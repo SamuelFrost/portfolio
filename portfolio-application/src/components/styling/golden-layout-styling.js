@@ -5,7 +5,13 @@ export const fonts = css`
   * {
     font-family: "Hiragino Kaku Gothic Pro W3", "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
-    color: var(--text-color);
+    color: var(--text-color, revert);
+  }
+  a{
+    color: var(--link-text-color, revert);
+  }
+  a:visited{
+    color: var(--visited-visited-text-color, revert)
   }
 `;
 
@@ -162,7 +168,12 @@ export const greyColorScheme = css`
     --border-color: grey;
     --route-bg-color: rgba(220, 220, 220, 0.3);
     --route-focus-bg-color: rgba(10, 15, 30, 0.2);
-  }
+    /*
+    --text-color:
+    --link-text-color:
+    --visited-visited-text-color
+    */
+}
 `;
 
 export default [greyColorScheme, fonts, layout, routes, menuIcons];
