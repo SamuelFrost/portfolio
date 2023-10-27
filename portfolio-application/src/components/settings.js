@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit-element'
 import { settingsButtonImage } from './settings-button-image.js'
-import { sharedStyles } from "./PortfolioApplication.js";
 import { use, translate } from "lit-translate";
 import "@github/details-menu-element"
+import { fonts, menuIcons } from './styling/golden-layout-styling.js';
 
 export const settingsButton = html`
   <button class="menu-icon" tabindex="0" aria-label="Settings" roll="button">
@@ -13,7 +13,6 @@ export const settingsButton = html`
 export const languageMenu = html`
   <details
     role="menu"
-    style="cursor:default;border:1px black solid;bord-radius:1px;background:#fff;"
   >
     <summary tabindex="0" aria-label="language">
       Language <span data-menu-button></span>
@@ -64,14 +63,14 @@ export const settingsDetailsMenu = html`
 export class SettingsDropDownButton extends LitElement {
   static get styles() {
     return [
-      sharedStyles,
+      fonts,
+      menuIcons,
       css`
         :host {
-          --color-bg-overlay: #aaa;
-          --color-border-overlay: #aaa;
-          --color-dropdown-shadow: #aaa;
-          --color-border-overlay: #aaa;
-          --thickness-border-overlay: 1px;
+          --settings-dropdown-bg-color: var(--menu-bg-color, #aaa);
+          --settings-dropdown-border-color: red; //var(--menu-bg-color, #aaa)
+          --settings-dropdown-shadow-color: var(--menu-bg-color, #aaa);
+          --settings-dropdown-border-: 1px;
         }
         .details-reset > summary {
           list-style: none;
@@ -82,6 +81,15 @@ export class SettingsDropDownButton extends LitElement {
         .details-reset > summary::-webkit-details-marker {
           display: none;
         }
+        details-menu>*{
+          cursor: default;
+          border: 1px black solid;
+          margin: 1px;
+          border-radius: 3px;
+        }
+        details[role="menu"] {
+          background-color: var(--global-bg-color);
+        }
         .dropdown-menu {
           position: fixed;
           right: 10px;
@@ -91,12 +99,13 @@ export class SettingsDropDownButton extends LitElement {
           padding-bottom: 4px;
           margin-top: 2px;
           list-style: none;
-          background-color: var(--color-bg-overlay);
+          background-color: var(--settings-dropdown-bg-color);
           background-clip: padding-box;
-          border: var(--thickness-border-overlay) solid
-            var(--color-border-overlay);
+          border-style: solid;
+          border-color: black;
+          border-width: 1px;
           border-radius: 6px;
-          box-shadow: var(--color-dropdown-shadow);
+          box-shadow: var(--settings-dropdown-shadow);
 
           display: flex;
           flex-direction: column;
