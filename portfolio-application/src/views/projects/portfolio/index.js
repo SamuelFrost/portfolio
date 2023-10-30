@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { translate, translateUnsafeHTML } from "lit-translate";
-import { localeConfig } from '/src/locale.js';
+import { localeConfig } from '/src/config/locale.js';
 export class ViewProjectsPortfolioIndex extends LitElement {
   render() {
     return html`

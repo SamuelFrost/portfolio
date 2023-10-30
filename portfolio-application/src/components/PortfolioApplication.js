@@ -1,9 +1,9 @@
 import { LitElement, html, css, TemplateResult } from "lit-element";
 import { sidebarCollapseButton } from "./sidebar-collapse-button.js";
 import { classMap } from "lit-html/directives/class-map";
-import { router } from "/src/router.js";
+import { router } from "/src/components/routerLink.js";
 import { use } from "lit-translate";
-import { localeConfig } from "/src/locale.js";
+import { localeConfig } from "/src/config/locale.js";
 import { navigationMenu } from "/src/components/navigation.js";
 import defaultStyles from "./styling/golden-layout-styling.js";
 

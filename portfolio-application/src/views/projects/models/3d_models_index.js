@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit-element";
 import { ModelViewerElement } from '@google/model-viewer'
 import { translate} from "lit-translate";
-import { localeConfig } from "/src/locale.js";
+import { localeConfig } from "/src/config/locale.js";
 
 export class ViewModelIndex extends LitElement {
   static get properties() {

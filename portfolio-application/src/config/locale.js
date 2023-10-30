@@ -8,7 +8,7 @@ class LocaleConfig {
   initialize() {
     if (translateConfig.loader.length === 0) {
       registerTranslateConfig({
-        // loader: lang => fetch(`/src/locales/${lang}/application.json`).then(res => res.json())
+        // loader: lang => fetch(`/src/config/locales/${lang}/application.json`).then(res => res.json())
         loader: (lang) => import(`./locales/${lang}/application.json`),
       });
     }

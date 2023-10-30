@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit-element";
 import { translate } from "lit-translate";
-import { localeConfig } from "/src/locale.js";
+import { localeConfig } from "/src/config/locale.js";
 export class ViewScheduleIndex extends LitElement {
   render() {
     return html` <h1>${translate("views.schedule.index.long_title")}</h1>
